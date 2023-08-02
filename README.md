@@ -5,4 +5,4 @@ if there is one you think we should add then you can contact us at [support@auto
 
 | Programming Language | Repository Branch |
 |----------------------|------------------|
-| JavaScript           | [javascript-sdk](https://github.com/autoenhance/autoenhance-sdk/tree/javascript-sdk) |
+| JavaScript           | [javascript](https://github.com/autoenhance/autoenhance-sdk/tree/javascript) |
