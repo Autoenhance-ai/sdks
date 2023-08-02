@@ -8,7 +8,7 @@ export default class Autoenhance {
 
     private configuration: Configuration;
 
-    constructor(apiKey: string, options: MyApiOptions = {}) {
+    constructor(apiKey: string, options: { baseURL?: string } = {}) {
         const { baseURL = 'https://dev.api.autoenhance.ai' } = options;
 
         this.configuration = new Configuration({
