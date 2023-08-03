@@ -36,7 +36,85 @@ export interface ImageCreatedOut {
      * @type {string}
      * @memberof ImageCreatedOut
      */
+    imageName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageCreatedOut
+     */
     imageType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImageCreatedOut
+     */
+    dateAdded?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageCreatedOut
+     */
+    enhanceType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImageCreatedOut
+     */
+    skyReplacement?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImageCreatedOut
+     */
+    verticalCorrection?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageCreatedOut
+     */
+    scene?: string;
+    /**
+     * The status of the order.
+     * @type {string}
+     * @memberof ImageCreatedOut
+     */
+    readonly status?: ImageCreatedOutStatusEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImageCreatedOut
+     */
+    enhanced?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImageCreatedOut
+     */
+    error?: boolean;
+    /**
+     * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
+     * @type {number}
+     * @memberof ImageCreatedOut
+     */
+    rating?: number;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageCreatedOut
+     */
+    readonly originalUrl?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageCreatedOut
+     */
+    readonly previewUrl?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageCreatedOut
+     */
+    readonly enhancedUrl?: any | null;
     /**
      * 
      * @type {any}
@@ -44,6 +122,19 @@ export interface ImageCreatedOut {
      */
     readonly s3PutObjectUrl?: any | null;
 }
+
+
+/**
+ * @export
+ */
+export const ImageCreatedOutStatusEnum = {
+    Waiting: 'waiting',
+    Processing: 'processing',
+    Processed: 'processed',
+    Error: 'error'
+} as const;
+export type ImageCreatedOutStatusEnum = typeof ImageCreatedOutStatusEnum[keyof typeof ImageCreatedOutStatusEnum];
+
 
 /**
  * Check if a given object implements the ImageCreatedOut interface.
@@ -66,7 +157,20 @@ export function ImageCreatedOutFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'imageId': !exists(json, 'image_id') ? undefined : json['image_id'],
         'orderId': !exists(json, 'order_id') ? undefined : json['order_id'],
+        'imageName': !exists(json, 'image_name') ? undefined : json['image_name'],
         'imageType': !exists(json, 'image_type') ? undefined : json['image_type'],
+        'dateAdded': !exists(json, 'date_added') ? undefined : json['date_added'],
+        'enhanceType': !exists(json, 'enhance_type') ? undefined : json['enhance_type'],
+        'skyReplacement': !exists(json, 'sky_replacement') ? undefined : json['sky_replacement'],
+        'verticalCorrection': !exists(json, 'vertical_correction') ? undefined : json['vertical_correction'],
+        'scene': !exists(json, 'scene') ? undefined : json['scene'],
+        'status': !exists(json, 'status') ? undefined : json['status'],
+        'enhanced': !exists(json, 'enhanced') ? undefined : json['enhanced'],
+        'error': !exists(json, 'error') ? undefined : json['error'],
+        'rating': !exists(json, 'rating') ? undefined : json['rating'],
+        'originalUrl': !exists(json, 'original_url') ? undefined : json['original_url'],
+        'previewUrl': !exists(json, 'preview_url') ? undefined : json['preview_url'],
+        'enhancedUrl': !exists(json, 'enhanced_url') ? undefined : json['enhanced_url'],
         's3PutObjectUrl': !exists(json, 's3PutObjectUrl') ? undefined : json['s3PutObjectUrl'],
     };
 }
@@ -82,7 +186,16 @@ export function ImageCreatedOutToJSON(value?: ImageCreatedOut | null): any {
         
         'image_id': value.imageId,
         'order_id': value.orderId,
+        'image_name': value.imageName,
         'image_type': value.imageType,
+        'date_added': value.dateAdded,
+        'enhance_type': value.enhanceType,
+        'sky_replacement': value.skyReplacement,
+        'vertical_correction': value.verticalCorrection,
+        'scene': value.scene,
+        'enhanced': value.enhanced,
+        'error': value.error,
+        'rating': value.rating,
     };
 }
 

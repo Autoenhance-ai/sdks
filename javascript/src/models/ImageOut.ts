@@ -91,6 +91,30 @@ export interface ImageOut {
      * @memberof ImageOut
      */
     error?: boolean;
+    /**
+     * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
+     * @type {number}
+     * @memberof ImageOut
+     */
+    rating?: number;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageOut
+     */
+    readonly originalUrl?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageOut
+     */
+    readonly previewUrl?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImageOut
+     */
+    readonly enhancedUrl?: any | null;
 }
 
 
@@ -137,6 +161,10 @@ export function ImageOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'status': !exists(json, 'status') ? undefined : json['status'],
         'enhanced': !exists(json, 'enhanced') ? undefined : json['enhanced'],
         'error': !exists(json, 'error') ? undefined : json['error'],
+        'rating': !exists(json, 'rating') ? undefined : json['rating'],
+        'originalUrl': !exists(json, 'original_url') ? undefined : json['original_url'],
+        'previewUrl': !exists(json, 'preview_url') ? undefined : json['preview_url'],
+        'enhancedUrl': !exists(json, 'enhanced_url') ? undefined : json['enhanced_url'],
     };
 }
 
@@ -160,6 +188,7 @@ export function ImageOutToJSON(value?: ImageOut | null): any {
         'scene': value.scene,
         'enhanced': value.enhanced,
         'error': value.error,
+        'rating': value.rating,
     };
 }
 
