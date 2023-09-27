@@ -3,6 +3,7 @@
 
 import { Configuration } from './runtime' 
 import * as apis from './apis';
+import * as custom from './custom'
 
 export default class Autoenhance {
 
@@ -18,8 +19,8 @@ export default class Autoenhance {
         });
     }
 
-    get ImagesApi(): apis.ImagesApi {
-        return new apis.ImagesApi(this.configuration)
+    get ImagesApi(): custom.Image {
+        return new custom.Image(this.configuration)
     }
 
     get OrdersApi(): apis.OrdersApi {
