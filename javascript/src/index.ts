@@ -2,7 +2,6 @@
 /* eslint-disable */
 
 import { Configuration } from './runtime' 
-import * as apis from './apis';
 import * as custom from './custom'
 
 export default class Autoenhance {
@@ -23,7 +22,7 @@ export default class Autoenhance {
         return new custom.Image(this.configuration)
     }
 
-    get OrdersApi(): apis.OrdersApi {
-        return new apis.OrdersApi(this.configuration)
+    get OrdersApi(): custom.Order {
+        return new custom.Order(this.configuration)
     }
 }
