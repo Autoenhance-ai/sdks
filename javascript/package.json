@@ -1,11 +1,11 @@
 {
-  "name": "@autoenhance/javascript",
-  "version": "v3",
-  "description": "OpenAPI client for @autoenhance/javascript",
-  "author": "OpenAPI-Generator",
+  "name": "@autoenhance.ai/javascript",
+  "version": "1.0.0",
+  "description": "Autoenhance.ai Javascript SDK",
+  "author": "Autoenhance.ai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "git+https://github.com/Autoenhance-ai/sdks.git"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "typescript": "^4.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Autoenhance-ai/sdks/issues"
+  },
+  "homepage": "https://github.com/Autoenhance-ai/sdks#readme",
+  "license": "ISC"
 }
