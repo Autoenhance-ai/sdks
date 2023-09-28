@@ -1,24 +1,24 @@
 {
-  "name": "@autoenhance.ai/javascript",
-  "version": "1.0.0",
-  "description": "Autoenhance.ai Javascript SDK",
-  "author": "Autoenhance.ai",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Autoenhance-ai/sdks.git"
-  },
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
-  },
-  "devDependencies": {
-    "typescript": "^4.0"
-  },
-  "bugs": {
-    "url": "https://github.com/Autoenhance-ai/sdks/issues"
-  },
-  "homepage": "https://github.com/Autoenhance-ai/sdks#readme",
-  "license": "ISC"
+ "name": "@autoenhance.ai/javascript",
+ "version": "1.0.0",
+ "description": "Autoenhance.ai Javascript SDK",
+ "author": "Autoenhance.ai",
+ "repository": {
+   "type": "git",
+   "url": "git+https://github.com/Autoenhance-ai/sdks.git"
+ },
+ "main": "./dist/index.js",
+ "typings": "./dist/index.d.ts",
+ "scripts": {
+   "build": "tsc",
+   "prepare": "npm run build"
+ },
+ "devDependencies": {
+   "typescript": "^4.0"
+ },
+ "bugs": {
+   "url": "https://github.com/Autoenhance-ai/sdks/issues"
+ },
+ "homepage": "https://github.com/Autoenhance-ai/sdks#readme",
+ "license": "ISC"
 }
