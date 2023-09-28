@@ -1,10 +1,14 @@
 .gitignore
 .npmignore
 README.md
+README.md
 package.json
 src/apis/ImagesApi.ts
 src/apis/OrdersApi.ts
 src/apis/index.ts
+src/custom/ImagesApi.ts
+src/custom/OrdersApi.ts
+src/custom/index.ts
 src/index.ts
 src/models/HTTPError.ts
 src/models/ImageCreatedOut.ts

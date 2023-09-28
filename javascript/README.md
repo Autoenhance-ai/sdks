@@ -1,45 +1,92 @@
-## @autoenhance/javascript@0.1.0
+<p align="center">
+  <img src="https://uploads-ssl.webflow.com/6151887923ecfa4ac66a9e69/64d36b116c00994e5e18fd9a_Logo-Light.svg" alt="Autoenhance.ai logo" align="center">
+</p>
 
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+<h1 align="center">Autoenhance.ai Javascript SDK</h1>
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+<p align="center">The AI photo editor that enhances your workflow now available with easy and quick Javascript SDK including Typescript support!</p>
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
+## 👋 Navigation
 
-Module system
-* CommonJS
-* ES6 module system
+* [Description](#description)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Examples](#examples)
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+## <a id="description"></a>✨ Description
 
-### Building
+Our SDK will help you easily integrate Autoenhance.ai into your codebase in a matter of minutes. We've prepared methods for interacting with our API in all possible ways you might need.
 
-To build and compile the typescript sources to javascript use:
+
+## <a id="requirements"></a>⚠️ Requirements
+
+* **Basic Javascript knowledge and a project set up**
+* **Autoenhance.ai API key**
+Don't have an API key ? Sign up in our [Webapp](https://www.app.autoenhance.ai/login), and you will find it on the [API page](https://app.autoenhance.ai/application-interface)!
+
+
+## <a id="installation"></a>🔧 Installation
+
+Install Autoenhance.ai SDK with a simple CLI command
+
+With `npm`:
+```bash
+npm install @autoenhance/javascript
 ```
-npm install
-npm run build
+With `yarn`:
+```bash
+yarn add @autoenhance/javascript
 ```
 
-### Publishing
+## <a id="configuration"></a>⚙️ Configuration
 
-First build the package then run ```npm publish```
+Follow these simple steps in order to implement and configure our SDK
 
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
+Import Autoenhance SDK package:
+```bash
+import Autoenhance from '@autoenhance/javascript';
 ```
-npm install @autoenhance/javascript@0.1.0 --save
+Create a constant, and add your [API key](#requirements)
+```bash
+const autoenhance = new Autoenhance('YOUR API KEY');
 ```
 
-_unPublished (not recommended):_
+Boom, that's it! Now you can interact with our API in a matter of seconds.
 
+## <a id="examples"></a>💎 Examples
+
+`Uploading image`
+```bash
+  const uploadImage = async (imageProperties: ImageIn, image: Blob) => {
+    await autoenhance.ImagesApi.uploadImageS3(imageProperties: ImageIn, image: Blob)
+  }
 ```
-npm install PATH_TO_GENERATED_PACKAGE --save
+
+`Retrieving order`
+```bash
+  const getOrder = async (orderId:string) => {
+    const order = await autoenhance.OrdersApi.retreiveOrder({ id: orderId});
+  };
+```
+
+`Retrieving list of orders`
+```bash
+  const getOrders = async () => {
+    const response = await autoenhance.OrdersApi.listOrders();
+    const orders = response.orders;
+  };
+```
+
+`Downloading enhanced image`
+```bash
+  const downloadImage = async (imageId) => {
+    const imageUrl =
+      await autoenhance.ImagesApi.downloadEnhancedImageRaw({
+          id: imageId,
+          size: "large",
+      }).then((res) => res.raw.url);
+      
+    return { url: imageUrl };
+  };
+```
