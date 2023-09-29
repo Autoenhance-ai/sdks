@@ -1,5 +1,6 @@
 .gitignore
 .npmignore
+README
 README.md
 README.md
 package.json
