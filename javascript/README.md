@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://uploads-ssl.webflow.com/6151887923ecfa4ac66a9e69/64d36b116c00994e5e18fd9a_Logo-Light.svg" alt="Autoenhance.ai logo" align="center">
+  <img src="https://uploads-ssl.webflow.com/6151887923ecfa4ac66a9e69/65168cccea1c9f0fcb33652c_logo-adaptive.svg" alt="Autoenhance.ai logo" align="center">
 </p>
 
 <h1 align="center">Autoenhance.ai Javascript SDK</h1>
