@@ -59,7 +59,20 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 `Uploading image`
 ```bash
   const uploadImage = async (imageProperties: ImageIn, image: Blob) => {
-    await autoenhance.ImagesApi.uploadImageS3(imageProperties: ImageIn, image: Blob)
+    const { s3PutObjectUrl } = await autoenhance.ImagesApi.createImage({
+      imageIn: {
+        ...imageProperties
+      }
+    })
+
+    await fetch(s3PutObjectUrl, {
+      method: "PUT",
+        headers: {
+            "Content-Type": "image/jpeg",
+        },
+        body: image,
+    });
+    
   }
 ```
 
