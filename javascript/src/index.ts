@@ -3,6 +3,7 @@
 
 import { Configuration } from './runtime' 
 import * as custom from './custom';
+import * as apis from './apis';
 export default class Autoenhance {
 
     private configuration: Configuration;
