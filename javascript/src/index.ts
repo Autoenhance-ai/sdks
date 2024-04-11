@@ -18,7 +18,7 @@ export default class Autoenhance {
         });
     }
     get ImagesApi(): custom.ImagesApi {
-        return new apis.ImagesApi(this.configuration)
+        return new custom.ImagesApi(this.configuration)
     }
 
     get OrdersApi(): apis.OrdersApi {
