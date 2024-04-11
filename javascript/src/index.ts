@@ -17,7 +17,7 @@ export default class Autoenhance {
         apiKey: () => apiKey,
         });
     }
-    get ImagesApi(): apis.ImagesApi {
+    get ImagesApi(): custom.ImagesApi {
         return new apis.ImagesApi(this.configuration)
     }
 
