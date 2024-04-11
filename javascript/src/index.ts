@@ -16,4 +16,11 @@ export default class Autoenhance {
         apiKey: () => apiKey,
         });
     }
+    get ImagesApi(): apis.ImagesApi {
+        return new apis.ImagesApi(this.configuration)
+    }
+
+    get OrdersApi(): apis.OrdersApi {
+        return new apis.OrdersApi(this.configuration)
+    }
 }

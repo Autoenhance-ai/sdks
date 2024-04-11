@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ImageOut } from './ImageOut';
 import {
     ImageOutFromJSON,
@@ -67,13 +67,13 @@ export interface OrderOut {
      * @type {any}
      * @memberof OrderOut
      */
-    readonly isProcessing?: any | null;
+    readonly isProcessing?: any;
     /**
      * The processing status for the order
      * @type {any}
      * @memberof OrderOut
      */
-    readonly isMerging?: any | null;
+    readonly isMerging?: any;
 }
 
 
@@ -93,9 +93,7 @@ export type OrderOutStatusEnum = typeof OrderOutStatusEnum[keyof typeof OrderOut
  * Check if a given object implements the OrderOut interface.
  */
 export function instanceOfOrderOut(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function OrderOutFromJSON(json: any): OrderOut {
@@ -103,36 +101,33 @@ export function OrderOutFromJSON(json: any): OrderOut {
 }
 
 export function OrderOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrderOut {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'orderId': !exists(json, 'order_id') ? undefined : json['order_id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'lastUpdatedAt': !exists(json, 'last_updated_at') ? undefined : (new Date(json['last_updated_at'])),
-        'images': !exists(json, 'images') ? undefined : ((json['images'] as Array<any>).map(ImageOutFromJSON)),
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'isProcessing': !exists(json, 'is_processing') ? undefined : json['is_processing'],
-        'isMerging': !exists(json, 'is_merging') ? undefined : json['is_merging'],
+        'orderId': json['order_id'] == null ? undefined : json['order_id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
+        'lastUpdatedAt': json['last_updated_at'] == null ? undefined : (new Date(json['last_updated_at'])),
+        'images': json['images'] == null ? undefined : ((json['images'] as Array<any>).map(ImageOutFromJSON)),
+        'status': json['status'] == null ? undefined : json['status'],
+        'isProcessing': json['is_processing'] == null ? undefined : json['is_processing'],
+        'isMerging': json['is_merging'] == null ? undefined : json['is_merging'],
     };
 }
 
 export function OrderOutToJSON(value?: OrderOut | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'order_id': value.orderId,
-        'name': value.name,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'last_updated_at': value.lastUpdatedAt === undefined ? undefined : (value.lastUpdatedAt.toISOString()),
-        'images': value.images === undefined ? undefined : ((value.images as Array<any>).map(ImageOutToJSON)),
+        'order_id': value['orderId'],
+        'name': value['name'],
+        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
+        'images': value['images'] == null ? undefined : ((value['images'] as Array<any>).map(ImageOutToJSON)),
     };
 }
 

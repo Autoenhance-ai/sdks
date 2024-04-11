@@ -32,11 +32,11 @@ Install Autoenhance.ai SDK with a simple CLI command
 
 With `npm`:
 ```bash
-npm install @autoenhance/javascript
+npm install @autoenhance.ai/javascript
 ```
 With `yarn`:
 ```bash
-yarn add @autoenhance/javascript
+yarn add @autoenhance.ai/javascript
 ```
 
 ## <a id="configuration"></a>⚙️ Configuration
@@ -45,7 +45,7 @@ Follow these simple steps in order to implement and configure our SDK
 
 Import Autoenhance SDK package:
 ```bash
-import Autoenhance from '@autoenhance/javascript';
+import Autoenhance from '@autoenhance.ai/javascript';
 ```
 Create a constant, and add your [API key](#requirements)
 ```bash

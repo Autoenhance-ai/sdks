@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ValidationErrorDetail } from './ValidationErrorDetail';
 import {
     ValidationErrorDetailFromJSON,
@@ -44,9 +44,7 @@ export interface ValidationError {
  * Check if a given object implements the ValidationError interface.
  */
 export function instanceOfValidationError(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ValidationErrorFromJSON(json: any): ValidationError {
@@ -54,27 +52,24 @@ export function ValidationErrorFromJSON(json: any): ValidationError {
 }
 
 export function ValidationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'detail': !exists(json, 'detail') ? undefined : ValidationErrorDetailFromJSON(json['detail']),
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'detail': json['detail'] == null ? undefined : ValidationErrorDetailFromJSON(json['detail']),
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
 export function ValidationErrorToJSON(value?: ValidationError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'detail': ValidationErrorDetailToJSON(value.detail),
-        'message': value.message,
+        'detail': ValidationErrorDetailToJSON(value['detail']),
+        'message': value['message'],
     };
 }
 

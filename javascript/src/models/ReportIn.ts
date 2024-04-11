@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,6 +31,12 @@ export interface ReportIn {
      * @memberof ReportIn
      */
     comment: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportIn
+     */
+    source?: ReportInSourceEnum;
 }
 
 
@@ -48,20 +54,28 @@ export const ReportInCategoryEnum = {
     SkyReplacement: 'SKY_REPLACEMENT',
     Contrast: 'CONTRAST',
     Colour: 'COLOUR',
-    WhiteBalance: 'WHITE_BALANCE'
+    WhiteBalance: '[\"WHITE_BALANCE\"]',
+    AutoPrivacy: 'AUTO_PRIVACY'
 } as const;
 export type ReportInCategoryEnum = typeof ReportInCategoryEnum[keyof typeof ReportInCategoryEnum];
+
+/**
+ * @export
+ */
+export const ReportInSourceEnum = {
+    Webapp: 'WEBAPP',
+    Api: 'API'
+} as const;
+export type ReportInSourceEnum = typeof ReportInSourceEnum[keyof typeof ReportInSourceEnum];
 
 
 /**
  * Check if a given object implements the ReportIn interface.
  */
 export function instanceOfReportIn(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "category" in value;
-    isInstance = isInstance && "comment" in value;
-
-    return isInstance;
+    if (!('category' in value)) return false;
+    if (!('comment' in value)) return false;
+    return true;
 }
 
 export function ReportInFromJSON(json: any): ReportIn {
@@ -69,27 +83,26 @@ export function ReportInFromJSON(json: any): ReportIn {
 }
 
 export function ReportInFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReportIn {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'category': json['category'],
         'comment': json['comment'],
+        'source': json['source'] == null ? undefined : json['source'],
     };
 }
 
 export function ReportInToJSON(value?: ReportIn | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'category': value.category,
-        'comment': value.comment,
+        'category': value['category'],
+        'comment': value['comment'],
+        'source': value['source'],
     };
 }
 

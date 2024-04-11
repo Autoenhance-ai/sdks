@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface HTTPError {
  * Check if a given object implements the HTTPError interface.
  */
 export function instanceOfHTTPError(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function HTTPErrorFromJSON(json: any): HTTPError {
@@ -47,27 +45,24 @@ export function HTTPErrorFromJSON(json: any): HTTPError {
 }
 
 export function HTTPErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): HTTPError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'detail': !exists(json, 'detail') ? undefined : json['detail'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'detail': json['detail'] == null ? undefined : json['detail'],
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
 export function HTTPErrorToJSON(value?: HTTPError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'detail': value.detail,
-        'message': value.message,
+        'detail': value['detail'],
+        'message': value['message'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface ValidationErrorDetailLocation {
  * Check if a given object implements the ValidationErrorDetailLocation interface.
  */
 export function instanceOfValidationErrorDetailLocation(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ValidationErrorDetailLocationFromJSON(json: any): ValidationErrorDetailLocation {
@@ -41,25 +39,22 @@ export function ValidationErrorDetailLocationFromJSON(json: any): ValidationErro
 }
 
 export function ValidationErrorDetailLocationFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationErrorDetailLocation {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'fieldName': !exists(json, '&lt;field_name&gt;') ? undefined : json['&lt;field_name&gt;'],
+        'fieldName': json['&lt;field_name&gt;'] == null ? undefined : json['&lt;field_name&gt;'],
     };
 }
 
 export function ValidationErrorDetailLocationToJSON(value?: ValidationErrorDetailLocation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        '&lt;field_name&gt;': value.fieldName,
+        '&lt;field_name&gt;': value['fieldName'],
     };
 }
 

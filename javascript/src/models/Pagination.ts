@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface Pagination {
  * Check if a given object implements the Pagination interface.
  */
 export function instanceOfPagination(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PaginationFromJSON(json: any): Pagination {
@@ -47,27 +45,24 @@ export function PaginationFromJSON(json: any): Pagination {
 }
 
 export function PaginationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pagination {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'perPage': !exists(json, 'per_page') ? undefined : json['per_page'],
-        'nextOffset': !exists(json, 'next_offset') ? undefined : json['next_offset'],
+        'perPage': json['per_page'] == null ? undefined : json['per_page'],
+        'nextOffset': json['next_offset'] == null ? undefined : json['next_offset'],
     };
 }
 
 export function PaginationToJSON(value?: Pagination | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'per_page': value.perPage,
-        'next_offset': value.nextOffset,
+        'per_page': value['perPage'],
+        'next_offset': value['nextOffset'],
     };
 }
 

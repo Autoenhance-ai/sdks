@@ -96,7 +96,7 @@ export class ImagesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -104,7 +104,7 @@ export class ImagesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ImageInToJSON(requestParameters.imageIn),
+            body: ImageInToJSON(requestParameters['imageIn']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImageCreatedOutFromJSON(jsonValue));
@@ -122,8 +122,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Delete Image
      */
     async deleteImageRaw(requestParameters: DeleteImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteImage().'
+            );
         }
 
         const queryParameters: any = {};
@@ -131,7 +134,7 @@ export class ImagesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/images/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -151,24 +154,27 @@ export class ImagesApi extends runtime.BaseAPI {
      * Download Enhanced Image
      */
     async downloadEnhancedImageRaw(requestParameters: DownloadEnhancedImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling downloadEnhancedImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling downloadEnhancedImage().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.size !== undefined) {
-            queryParameters['size'] = requestParameters.size;
+        if (requestParameters['size'] != null) {
+            queryParameters['size'] = requestParameters['size'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/v3/images/{id}/enhanced`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/enhanced`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -193,20 +199,23 @@ export class ImagesApi extends runtime.BaseAPI {
      * Download Original Image
      */
     async downloadOriginalImageRaw(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling downloadOriginalImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling downloadOriginalImage().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.size !== undefined) {
-            queryParameters['size'] = requestParameters.size;
+        if (requestParameters['size'] != null) {
+            queryParameters['size'] = requestParameters['size'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/images/{id}/original`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/original`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -231,8 +240,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Download Preview Image
      */
     async downloadPreviewImageRaw(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling downloadPreviewImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling downloadPreviewImage().'
+            );
         }
 
         const queryParameters: any = {};
@@ -240,7 +252,7 @@ export class ImagesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/images/{id}/preview`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/preview`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -265,8 +277,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Download Watermark Image
      */
     async downloadWatermarkImageRaw(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling downloadWatermarkImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling downloadWatermarkImage().'
+            );
         }
 
         const queryParameters: any = {};
@@ -274,7 +289,7 @@ export class ImagesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/images/{id}/watermark`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/watermark`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -299,8 +314,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Report Image
      */
     async reportImageRaw(requestParameters: ReportImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling reportImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling reportImage().'
+            );
         }
 
         const queryParameters: any = {};
@@ -310,15 +328,15 @@ export class ImagesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/v3/images/{id}/report`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/report`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReportInToJSON(requestParameters.reportIn),
+            body: ReportInToJSON(requestParameters['reportIn']),
         }, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -340,8 +358,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Retrieve Image
      */
     async retrieveImageRaw(requestParameters: RetrieveImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImageOut>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling retrieveImage.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling retrieveImage().'
+            );
         }
 
         const queryParameters: any = {};
@@ -349,7 +370,7 @@ export class ImagesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/images/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -370,8 +391,11 @@ export class ImagesApi extends runtime.BaseAPI {
      * Process Image
      */
     async v3ImagesIdProcessPostRaw(requestParameters: V3ImagesIdProcessPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImageOut>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling v3ImagesIdProcessPost.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling v3ImagesIdProcessPost().'
+            );
         }
 
         const queryParameters: any = {};
@@ -381,15 +405,15 @@ export class ImagesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/v3/images/{id}/process`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/images/{id}/process`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ImageInUpdateToJSON(requestParameters.imageInUpdate),
+            body: ImageInUpdateToJSON(requestParameters['imageInUpdate']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ImageOutFromJSON(jsonValue));

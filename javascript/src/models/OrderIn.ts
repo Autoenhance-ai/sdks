@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface OrderIn {
  * Check if a given object implements the OrderIn interface.
  */
 export function instanceOfOrderIn(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function OrderInFromJSON(json: any): OrderIn {
@@ -47,27 +45,24 @@ export function OrderInFromJSON(json: any): OrderIn {
 }
 
 export function OrderInFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrderIn {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'orderId': !exists(json, 'order_id') ? undefined : json['order_id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'orderId': json['order_id'] == null ? undefined : json['order_id'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 
 export function OrderInToJSON(value?: OrderIn | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'order_id': value.orderId,
-        'name': value.name,
+        'order_id': value['orderId'],
+        'name': value['name'],
     };
 }
 

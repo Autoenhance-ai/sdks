@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { OrderOut } from './OrderOut';
 import {
     OrderOutFromJSON,
@@ -50,9 +50,7 @@ export interface OrdersOut {
  * Check if a given object implements the OrdersOut interface.
  */
 export function instanceOfOrdersOut(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function OrdersOutFromJSON(json: any): OrdersOut {
@@ -60,27 +58,24 @@ export function OrdersOutFromJSON(json: any): OrdersOut {
 }
 
 export function OrdersOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrdersOut {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'orders': !exists(json, 'orders') ? undefined : ((json['orders'] as Array<any>).map(OrderOutFromJSON)),
-        'pagination': !exists(json, 'pagination') ? undefined : PaginationFromJSON(json['pagination']),
+        'orders': json['orders'] == null ? undefined : ((json['orders'] as Array<any>).map(OrderOutFromJSON)),
+        'pagination': json['pagination'] == null ? undefined : PaginationFromJSON(json['pagination']),
     };
 }
 
 export function OrdersOutToJSON(value?: OrdersOut | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'orders': value.orders === undefined ? undefined : ((value.orders as Array<any>).map(OrderOutToJSON)),
-        'pagination': PaginationToJSON(value.pagination),
+        'orders': value['orders'] == null ? undefined : ((value['orders'] as Array<any>).map(OrderOutToJSON)),
+        'pagination': PaginationToJSON(value['pagination']),
     };
 }
 

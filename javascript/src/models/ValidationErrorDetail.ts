@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ValidationErrorDetailLocation } from './ValidationErrorDetailLocation';
 import {
     ValidationErrorDetailLocationFromJSON,
@@ -38,9 +38,7 @@ export interface ValidationErrorDetail {
  * Check if a given object implements the ValidationErrorDetail interface.
  */
 export function instanceOfValidationErrorDetail(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ValidationErrorDetailFromJSON(json: any): ValidationErrorDetail {
@@ -48,25 +46,22 @@ export function ValidationErrorDetailFromJSON(json: any): ValidationErrorDetail 
 }
 
 export function ValidationErrorDetailFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationErrorDetail {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'location': !exists(json, '&lt;location&gt;') ? undefined : ValidationErrorDetailLocationFromJSON(json['&lt;location&gt;']),
+        'location': json['&lt;location&gt;'] == null ? undefined : ValidationErrorDetailLocationFromJSON(json['&lt;location&gt;']),
     };
 }
 
 export function ValidationErrorDetailToJSON(value?: ValidationErrorDetail | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        '&lt;location&gt;': ValidationErrorDetailLocationToJSON(value.location),
+        '&lt;location&gt;': ValidationErrorDetailLocationToJSON(value['location']),
     };
 }
 

@@ -46,7 +46,7 @@ export interface DeleteOrderRequest {
 }
 
 export interface ListOrdersRequest {
-    offset?: string | null;
+    offset?: string;
     perPage?: number;
 }
 
@@ -80,7 +80,7 @@ export class OrdersApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -88,7 +88,7 @@ export class OrdersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: OrderInToJSON(requestParameters.orderIn),
+            body: OrderInToJSON(requestParameters['orderIn']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OrderOutFromJSON(jsonValue));
@@ -107,8 +107,11 @@ export class OrdersApi extends runtime.BaseAPI {
      * Delete Order
      */
     async deleteOrderRaw(requestParameters: DeleteOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteOrder.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteOrder().'
+            );
         }
 
         const queryParameters: any = {};
@@ -116,7 +119,7 @@ export class OrdersApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -140,18 +143,18 @@ export class OrdersApi extends runtime.BaseAPI {
     async listOrdersRaw(requestParameters: ListOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersOut>> {
         const queryParameters: any = {};
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
-        if (requestParameters.perPage !== undefined) {
-            queryParameters['per_page'] = requestParameters.perPage;
+        if (requestParameters['perPage'] != null) {
+            queryParameters['per_page'] = requestParameters['perPage'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -178,8 +181,11 @@ export class OrdersApi extends runtime.BaseAPI {
      * Merge HDR
      */
     async mergeHdrRaw(requestParameters: MergeHdrRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling mergeHdr.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling mergeHdr().'
+            );
         }
 
         const queryParameters: any = {};
@@ -189,15 +195,15 @@ export class OrdersApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-api-key"] = this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/v3/orders/{id}/merge`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/orders/{id}/merge`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: OrderHDRMergeToJSON(requestParameters.orderHDRMerge),
+            body: OrderHDRMergeToJSON(requestParameters['orderHDRMerge']),
         }, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -221,8 +227,11 @@ export class OrdersApi extends runtime.BaseAPI {
      * Retrieve Order
      */
     async retreiveOrderRaw(requestParameters: RetreiveOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderOut>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling retreiveOrder.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling retreiveOrder().'
+            );
         }
 
         const queryParameters: any = {};
@@ -230,7 +239,7 @@ export class OrdersApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -253,8 +262,11 @@ export class OrdersApi extends runtime.BaseAPI {
      * Update Order
      */
     async updateOrderRaw(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderOut>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling updateOrder.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling updateOrder().'
+            );
         }
 
         const queryParameters: any = {};
@@ -264,11 +276,11 @@ export class OrdersApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
-            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/v3/orders/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: OrderInToJSON(requestParameters.orderIn),
+            body: OrderInToJSON(requestParameters['orderIn']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => OrderOutFromJSON(jsonValue));
