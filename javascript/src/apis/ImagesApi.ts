@@ -153,7 +153,7 @@ export class ImagesApi extends runtime.BaseAPI {
     /**
      * Download Enhanced Image
      */
-    async downloadEnhancedImageRaw(requestParameters: DownloadEnhancedImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadEnhancedImageRaw(requestParameters: DownloadEnhancedImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -180,20 +180,25 @@ export class ImagesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Download Enhanced Image
      */
-    async downloadEnhancedImage(requestParameters: DownloadEnhancedImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.downloadEnhancedImageRaw(requestParameters, initOverrides);
+    async downloadEnhancedImage(requestParameters: DownloadEnhancedImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.downloadEnhancedImageRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
      * Download Original Image
      */
-    async downloadOriginalImageRaw(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadOriginalImageRaw(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -216,20 +221,25 @@ export class ImagesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Download Original Image
      */
-    async downloadOriginalImage(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.downloadOriginalImageRaw(requestParameters, initOverrides);
+    async downloadOriginalImage(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.downloadOriginalImageRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
      * Download Preview Image
      */
-    async downloadPreviewImageRaw(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadPreviewImageRaw(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -248,20 +258,25 @@ export class ImagesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Download Preview Image
      */
-    async downloadPreviewImage(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.downloadPreviewImageRaw(requestParameters, initOverrides);
+    async downloadPreviewImage(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.downloadPreviewImageRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
      * Download Watermark Image
      */
-    async downloadWatermarkImageRaw(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadWatermarkImageRaw(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -280,14 +295,28 @@ export class ImagesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        const contentType = response.headers.get('content-type');
+        if (contentType && (contentType.startsWith('image/') || contentType === 'application/octet-stream')) {
+            const blob = await response.blob();
+            const headers = response.headers;
+            const status = response.status;
+            const statusText = response.statusText;
+            const responseInit: ResponseInit = { headers, status, statusText };
+            const responseObj = new Response(blob, responseInit);
+            return new runtime.BlobApiResponse(responseObj);
+        } else if (this.isJsonMime(contentType)) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Download Watermark Image
      */
-    async downloadWatermarkImage(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.downloadWatermarkImageRaw(requestParameters, initOverrides);
+    async downloadWatermarkImage(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.downloadWatermarkImageRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
