@@ -70,10 +70,10 @@ export interface OrderOut {
     readonly isProcessing?: any;
     /**
      * The processing status for the order
-     * @type {any}
+     * @type {boolean}
      * @memberof OrderOut
      */
-    readonly isMerging?: any;
+    isMerging?: boolean;
 }
 
 
@@ -92,7 +92,7 @@ export type OrderOutStatusEnum = typeof OrderOutStatusEnum[keyof typeof OrderOut
 /**
  * Check if a given object implements the OrderOut interface.
  */
-export function instanceOfOrderOut(value: object): boolean {
+export function instanceOfOrderOut(value: object): value is OrderOut {
     return true;
 }
 
@@ -117,7 +117,7 @@ export function OrderOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function OrderOutToJSON(value?: OrderOut | null): any {
+export function OrderOutToJSON(value?: Omit<OrderOut, 'status'|'is_processing'> | null): any {
     if (value == null) {
         return value;
     }
@@ -128,6 +128,7 @@ export function OrderOutToJSON(value?: OrderOut | null): any {
         'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
         'images': value['images'] == null ? undefined : ((value['images'] as Array<any>).map(ImageOutToJSON)),
+        'is_merging': value['isMerging'],
     };
 }
 

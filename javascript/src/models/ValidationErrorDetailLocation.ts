@@ -30,7 +30,7 @@ export interface ValidationErrorDetailLocation {
 /**
  * Check if a given object implements the ValidationErrorDetailLocation interface.
  */
-export function instanceOfValidationErrorDetailLocation(value: object): boolean {
+export function instanceOfValidationErrorDetailLocation(value: object): value is ValidationErrorDetailLocation {
     return true;
 }
 

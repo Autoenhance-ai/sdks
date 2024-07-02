@@ -26,11 +26,17 @@ export interface ImageIn {
      */
     rating?: number;
     /**
-     * 
+     * The version of the AI model to use for enhancing the image.
      * @type {string}
      * @memberof ImageIn
      */
-    aiVersion?: ImageInAiVersionEnum;
+    aiVersion?: string;
+    /**
+     * Whether to enhance the image.
+     * @type {boolean}
+     * @memberof ImageIn
+     */
+    enhance?: boolean;
     /**
      * The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM, NEUTRAL, or AUTHENTIC.
      * @type {string}
@@ -62,11 +68,35 @@ export interface ImageIn {
      */
     contrastBoost?: ImageInContrastBoostEnum;
     /**
+     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageIn
+     */
+    contrastBoostInternal?: ImageInContrastBoostInternalEnum;
+    /**
+     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageIn
+     */
+    contrastBoostExternal?: ImageInContrastBoostExternalEnum;
+    /**
      * The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
     brightnessBoost?: ImageInBrightnessBoostEnum;
+    /**
+     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageIn
+     */
+    brightnessBoostInternal?: ImageInBrightnessBoostInternalEnum;
+    /**
+     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageIn
+     */
+    brightnessBoostExternal?: ImageInBrightnessBoostExternalEnum;
     /**
      * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
@@ -114,36 +144,6 @@ export interface ImageIn {
      * @type {string}
      * @memberof ImageIn
      */
-    skySaturationLevel?: ImageInSkySaturationLevelEnum;
-    /**
-     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageIn
-     */
-    contrastBoostInternal?: ImageInContrastBoostInternalEnum;
-    /**
-     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageIn
-     */
-    contrastBoostExternal?: ImageInContrastBoostExternalEnum;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageIn
-     */
-    brightnessBoostInternal?: ImageInBrightnessBoostInternalEnum;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageIn
-     */
-    brightnessBoostExternal?: ImageInBrightnessBoostExternalEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageIn
-     */
     imageName: string;
     /**
      * 
@@ -175,27 +175,12 @@ export interface ImageIn {
 /**
  * @export
  */
-export const ImageInAiVersionEnum = {
-    _11: '1.1',
-    _30: '3.0',
-    _31: '3.1',
-    _32: '3.2',
-    _33: '3.3',
-    _40: '4.0',
-    Null: 'null'
-} as const;
-export type ImageInAiVersionEnum = typeof ImageInAiVersionEnum[keyof typeof ImageInAiVersionEnum];
-
-/**
- * @export
- */
 export const ImageInEnhanceTypeEnum = {
     Property: 'property',
     PropertyUsa: 'property_usa',
     Warm: 'warm',
     Neutral: 'neutral',
-    Authentic: 'authentic',
-    Null: 'null'
+    Authentic: 'authentic'
 } as const;
 export type ImageInEnhanceTypeEnum = typeof ImageInEnhanceTypeEnum[keyof typeof ImageInEnhanceTypeEnum];
 
@@ -214,6 +199,30 @@ export type ImageInContrastBoostEnum = typeof ImageInContrastBoostEnum[keyof typ
 /**
  * @export
  */
+export const ImageInContrastBoostInternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageInContrastBoostInternalEnum = typeof ImageInContrastBoostInternalEnum[keyof typeof ImageInContrastBoostInternalEnum];
+
+/**
+ * @export
+ */
+export const ImageInContrastBoostExternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageInContrastBoostExternalEnum = typeof ImageInContrastBoostExternalEnum[keyof typeof ImageInContrastBoostExternalEnum];
+
+/**
+ * @export
+ */
 export const ImageInBrightnessBoostEnum = {
     None: 'NONE',
     Low: 'LOW',
@@ -222,6 +231,30 @@ export const ImageInBrightnessBoostEnum = {
     Null: 'null'
 } as const;
 export type ImageInBrightnessBoostEnum = typeof ImageInBrightnessBoostEnum[keyof typeof ImageInBrightnessBoostEnum];
+
+/**
+ * @export
+ */
+export const ImageInBrightnessBoostInternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageInBrightnessBoostInternalEnum = typeof ImageInBrightnessBoostInternalEnum[keyof typeof ImageInBrightnessBoostInternalEnum];
+
+/**
+ * @export
+ */
+export const ImageInBrightnessBoostExternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageInBrightnessBoostExternalEnum = typeof ImageInBrightnessBoostExternalEnum[keyof typeof ImageInBrightnessBoostExternalEnum];
 
 /**
  * @export
@@ -282,72 +315,12 @@ export const ImageInCloudTypeEnum = {
 } as const;
 export type ImageInCloudTypeEnum = typeof ImageInCloudTypeEnum[keyof typeof ImageInCloudTypeEnum];
 
-/**
- * @export
- */
-export const ImageInSkySaturationLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInSkySaturationLevelEnum = typeof ImageInSkySaturationLevelEnum[keyof typeof ImageInSkySaturationLevelEnum];
-
-/**
- * @export
- */
-export const ImageInContrastBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInContrastBoostInternalEnum = typeof ImageInContrastBoostInternalEnum[keyof typeof ImageInContrastBoostInternalEnum];
-
-/**
- * @export
- */
-export const ImageInContrastBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInContrastBoostExternalEnum = typeof ImageInContrastBoostExternalEnum[keyof typeof ImageInContrastBoostExternalEnum];
-
-/**
- * @export
- */
-export const ImageInBrightnessBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInBrightnessBoostInternalEnum = typeof ImageInBrightnessBoostInternalEnum[keyof typeof ImageInBrightnessBoostInternalEnum];
-
-/**
- * @export
- */
-export const ImageInBrightnessBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInBrightnessBoostExternalEnum = typeof ImageInBrightnessBoostExternalEnum[keyof typeof ImageInBrightnessBoostExternalEnum];
-
 
 /**
  * Check if a given object implements the ImageIn interface.
  */
-export function instanceOfImageIn(value: object): boolean {
-    if (!('imageName' in value)) return false;
+export function instanceOfImageIn(value: object): value is ImageIn {
+    if (!('imageName' in value) || value['imageName'] === undefined) return false;
     return true;
 }
 
@@ -363,12 +336,17 @@ export function ImageInFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         
         'rating': json['rating'] == null ? undefined : json['rating'],
         'aiVersion': json['ai_version'] == null ? undefined : json['ai_version'],
+        'enhance': json['enhance'] == null ? undefined : json['enhance'],
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
         'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
         'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
         'lensCorrection': json['lens_correction'] == null ? undefined : json['lens_correction'],
         'contrastBoost': json['contrast_boost'] == null ? undefined : json['contrast_boost'],
+        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
+        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
         'brightnessBoost': json['brightness_boost'] == null ? undefined : json['brightness_boost'],
+        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
+        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
         'saturationLevel': json['saturation_level'] == null ? undefined : json['saturation_level'],
         'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
         'denoiseLevel': json['denoise_level'] == null ? undefined : json['denoise_level'],
@@ -376,11 +354,6 @@ export function ImageInFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         'privacy': json['privacy'] == null ? undefined : json['privacy'],
         'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
         'cloudType': json['cloud_type'] == null ? undefined : json['cloud_type'],
-        'skySaturationLevel': json['sky_saturation_level'] == null ? undefined : json['sky_saturation_level'],
-        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
-        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
-        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
-        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
         'imageName': json['image_name'],
         'orderId': json['order_id'] == null ? undefined : json['order_id'],
         'contentType': json['content_type'] == null ? undefined : json['content_type'],
@@ -397,12 +370,17 @@ export function ImageInToJSON(value?: ImageIn | null): any {
         
         'rating': value['rating'],
         'ai_version': value['aiVersion'],
+        'enhance': value['enhance'],
         'enhance_type': value['enhanceType'],
         'sky_replacement': value['skyReplacement'],
         'vertical_correction': value['verticalCorrection'],
         'lens_correction': value['lensCorrection'],
         'contrast_boost': value['contrastBoost'],
+        'contrast_boost_internal': value['contrastBoostInternal'],
+        'contrast_boost_external': value['contrastBoostExternal'],
         'brightness_boost': value['brightnessBoost'],
+        'brightness_boost_internal': value['brightnessBoostInternal'],
+        'brightness_boost_external': value['brightnessBoostExternal'],
         'saturation_level': value['saturationLevel'],
         'sharpen_level': value['sharpenLevel'],
         'denoise_level': value['denoiseLevel'],
@@ -410,11 +388,6 @@ export function ImageInToJSON(value?: ImageIn | null): any {
         'privacy': value['privacy'],
         'window_pull': value['windowPull'],
         'cloud_type': value['cloudType'],
-        'sky_saturation_level': value['skySaturationLevel'],
-        'contrast_boost_internal': value['contrastBoostInternal'],
-        'contrast_boost_external': value['contrastBoostExternal'],
-        'brightness_boost_internal': value['brightnessBoostInternal'],
-        'brightness_boost_external': value['brightnessBoostExternal'],
         'image_name': value['imageName'],
         'order_id': value['orderId'],
         'content_type': value['contentType'],

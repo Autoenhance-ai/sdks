@@ -72,7 +72,7 @@ export class OrdersApi extends runtime.BaseAPI {
     /**
      * Create Order
      */
-    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderOut>> {
+    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -91,13 +91,17 @@ export class OrdersApi extends runtime.BaseAPI {
             body: OrderInToJSON(requestParameters['orderIn']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OrderOutFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Create Order
      */
-    async createOrder(requestParameters: CreateOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderOut> {
+    async createOrder(requestParameters: CreateOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.createOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }

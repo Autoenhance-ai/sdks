@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { OrderOut } from './OrderOut';
-import {
-    OrderOutFromJSON,
-    OrderOutFromJSONTyped,
-    OrderOutToJSON,
-} from './OrderOut';
 import type { Pagination } from './Pagination';
 import {
     PaginationFromJSON,
     PaginationFromJSONTyped,
     PaginationToJSON,
 } from './Pagination';
+import type { OrderOut } from './OrderOut';
+import {
+    OrderOutFromJSON,
+    OrderOutFromJSONTyped,
+    OrderOutToJSON,
+} from './OrderOut';
 
 /**
  * 
@@ -49,7 +49,7 @@ export interface OrdersOut {
 /**
  * Check if a given object implements the OrdersOut interface.
  */
-export function instanceOfOrdersOut(value: object): boolean {
+export function instanceOfOrdersOut(value: object): value is OrdersOut {
     return true;
 }
 

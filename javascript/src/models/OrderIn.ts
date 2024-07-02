@@ -36,7 +36,7 @@ export interface OrderIn {
 /**
  * Check if a given object implements the OrderIn interface.
  */
-export function instanceOfOrderIn(value: object): boolean {
+export function instanceOfOrderIn(value: object): value is OrderIn {
     return true;
 }
 

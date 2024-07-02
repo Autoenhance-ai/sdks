@@ -24,40 +24,54 @@ export interface ReportIn {
      * @type {Array<string>}
      * @memberof ReportIn
      */
-    category: Array<ReportInCategoryEnum>;
+    categories: Array<ReportInCategoriesEnum>;
     /**
      * A comment to be sent along with the report.
      * @type {string}
      * @memberof ReportIn
      */
-    comment: string;
+    comment?: string;
     /**
      * 
      * @type {string}
      * @memberof ReportIn
      */
     source?: ReportInSourceEnum;
+    /**
+     * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
+     * @type {number}
+     * @memberof ReportIn
+     */
+    score?: number;
 }
 
 
 /**
  * @export
  */
-export const ReportInCategoryEnum = {
+export const ReportInCategoriesEnum = {
+    AutoPrivacy: 'AUTO_PRIVACY',
+    Colour: 'COLOUR',
+    Contrast: 'CONTRAST',
     Download: 'DOWNLOAD',
+    DynamicRange: 'DYNAMIC_RANGE',
+    Exposure: 'EXPOSURE',
     Hdr: 'HDR',
+    ImageQuality: 'IMAGE_QUALITY',
+    ItemRemoval: 'ITEM_REMOVAL',
     LensCorrection: 'LENS_CORRECTION',
+    NoComplaints: 'NO_COMPLAINTS',
+    Noise: 'NOISE',
+    Other: 'OTHER',
     PerspectiveCorrection: 'PERSPECTIVE_CORRECTION',
     Processing: 'PROCESSING',
-    ImageQuality: 'IMAGE_QUALITY',
-    Other: 'OTHER',
+    Sharpness: 'SHARPNESS',
     SkyReplacement: 'SKY_REPLACEMENT',
-    Contrast: 'CONTRAST',
-    Colour: 'COLOUR',
-    WhiteBalance: '[\"WHITE_BALANCE\"]',
-    AutoPrivacy: 'AUTO_PRIVACY'
+    WhiteBalance: 'WHITE_BALANCE',
+    WindowPull: 'WINDOW_PULL',
+    Privacy: 'PRIVACY'
 } as const;
-export type ReportInCategoryEnum = typeof ReportInCategoryEnum[keyof typeof ReportInCategoryEnum];
+export type ReportInCategoriesEnum = typeof ReportInCategoriesEnum[keyof typeof ReportInCategoriesEnum];
 
 /**
  * @export
@@ -72,9 +86,8 @@ export type ReportInSourceEnum = typeof ReportInSourceEnum[keyof typeof ReportIn
 /**
  * Check if a given object implements the ReportIn interface.
  */
-export function instanceOfReportIn(value: object): boolean {
-    if (!('category' in value)) return false;
-    if (!('comment' in value)) return false;
+export function instanceOfReportIn(value: object): value is ReportIn {
+    if (!('categories' in value) || value['categories'] === undefined) return false;
     return true;
 }
 
@@ -88,9 +101,10 @@ export function ReportInFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'category': json['category'],
-        'comment': json['comment'],
+        'categories': json['categories'],
+        'comment': json['comment'] == null ? undefined : json['comment'],
         'source': json['source'] == null ? undefined : json['source'],
+        'score': json['score'] == null ? undefined : json['score'],
     };
 }
 
@@ -100,9 +114,10 @@ export function ReportInToJSON(value?: ReportIn | null): any {
     }
     return {
         
-        'category': value['category'],
+        'categories': value['categories'],
         'comment': value['comment'],
         'source': value['source'],
+        'score': value['score'],
     };
 }
 

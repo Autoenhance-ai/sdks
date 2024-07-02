@@ -36,7 +36,7 @@ export interface HTTPError {
 /**
  * Check if a given object implements the HTTPError interface.
  */
-export function instanceOfHTTPError(value: object): boolean {
+export function instanceOfHTTPError(value: object): value is HTTPError {
     return true;
 }
 
