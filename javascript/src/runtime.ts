@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://dev.api.autoenhance.ai".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.autoenhance.ai".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path

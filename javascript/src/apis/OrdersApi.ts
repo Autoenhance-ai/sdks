@@ -55,7 +55,7 @@ export interface MergeHdrRequest {
     orderHDRMerge?: OrderHDRMerge;
 }
 
-export interface RetreiveOrderRequest {
+export interface RetrieveOrderRequest {
     id: string;
 }
 
@@ -230,11 +230,11 @@ export class OrdersApi extends runtime.BaseAPI {
      * Retrieve a specific order.
      * Retrieve Order
      */
-    async retreiveOrderRaw(requestParameters: RetreiveOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderOut>> {
+    async retrieveOrderRaw(requestParameters: RetrieveOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderOut>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling retreiveOrder().'
+                'Required parameter "id" was null or undefined when calling retrieveOrder().'
             );
         }
 
@@ -256,8 +256,8 @@ export class OrdersApi extends runtime.BaseAPI {
      * Retrieve a specific order.
      * Retrieve Order
      */
-    async retreiveOrder(requestParameters: RetreiveOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderOut> {
-        const response = await this.retreiveOrderRaw(requestParameters, initOverrides);
+    async retrieveOrder(requestParameters: RetrieveOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderOut> {
+        const response = await this.retrieveOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

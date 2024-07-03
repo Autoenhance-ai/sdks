@@ -20,17 +20,17 @@ import { mapValues } from '../runtime';
  */
 export interface Pagination {
     /**
-     * The amount of items per page of results.
-     * @type {number}
-     * @memberof Pagination
-     */
-    perPage?: number;
-    /**
      * The offset token for the next page of results or null if it is the last page. Pass this to the `offset` parameter when loading the next page.
      * @type {string}
      * @memberof Pagination
      */
     nextOffset?: string;
+    /**
+     * The amount of items per page of results.
+     * @type {number}
+     * @memberof Pagination
+     */
+    perPage?: number;
 }
 
 /**
@@ -50,8 +50,8 @@ export function PaginationFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'perPage': json['per_page'] == null ? undefined : json['per_page'],
         'nextOffset': json['next_offset'] == null ? undefined : json['next_offset'],
+        'perPage': json['per_page'] == null ? undefined : json['per_page'],
     };
 }
 
@@ -61,8 +61,8 @@ export function PaginationToJSON(value?: Pagination | null): any {
     }
     return {
         
-        'per_page': value['perPage'],
         'next_offset': value['nextOffset'],
+        'per_page': value['perPage'],
     };
 }
 

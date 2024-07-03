@@ -20,17 +20,17 @@ import { mapValues } from '../runtime';
  */
 export interface OrderIn {
     /**
-     * The ID for the order.
-     * @type {string}
-     * @memberof OrderIn
-     */
-    orderId?: string;
-    /**
      * The name for the order.
      * @type {string}
      * @memberof OrderIn
      */
     name?: string;
+    /**
+     * The ID for the order.
+     * @type {string}
+     * @memberof OrderIn
+     */
+    orderId?: string;
 }
 
 /**
@@ -50,8 +50,8 @@ export function OrderInFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
     }
     return {
         
-        'orderId': json['order_id'] == null ? undefined : json['order_id'],
         'name': json['name'] == null ? undefined : json['name'],
+        'orderId': json['order_id'] == null ? undefined : json['order_id'],
     };
 }
 
@@ -61,8 +61,8 @@ export function OrderInToJSON(value?: OrderIn | null): any {
     }
     return {
         
-        'order_id': value['orderId'],
         'name': value['name'],
+        'order_id': value['orderId'],
     };
 }
 

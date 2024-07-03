@@ -27,29 +27,11 @@ import {
  */
 export interface OrderOut {
     /**
-     * The ID for the order.
-     * @type {string}
-     * @memberof OrderOut
-     */
-    orderId?: string;
-    /**
-     * The name for the order.
-     * @type {string}
-     * @memberof OrderOut
-     */
-    name?: string;
-    /**
      * The creation date of the order.
      * @type {Date}
      * @memberof OrderOut
      */
     createdAt?: Date;
-    /**
-     * The last updated date of the order.
-     * @type {Date}
-     * @memberof OrderOut
-     */
-    lastUpdatedAt?: Date;
     /**
      * 
      * @type {Array<ImageOut>}
@@ -57,11 +39,11 @@ export interface OrderOut {
      */
     images?: Array<ImageOut>;
     /**
-     * The status of the order.
-     * @type {string}
+     * The processing status for the order
+     * @type {boolean}
      * @memberof OrderOut
      */
-    readonly status?: OrderOutStatusEnum;
+    isMerging?: boolean;
     /**
      * The processing status for the order
      * @type {any}
@@ -69,11 +51,29 @@ export interface OrderOut {
      */
     readonly isProcessing?: any;
     /**
-     * The processing status for the order
-     * @type {boolean}
+     * The last updated date of the order.
+     * @type {Date}
      * @memberof OrderOut
      */
-    isMerging?: boolean;
+    lastUpdatedAt?: Date;
+    /**
+     * The name for the order.
+     * @type {string}
+     * @memberof OrderOut
+     */
+    name?: string;
+    /**
+     * The ID for the order.
+     * @type {string}
+     * @memberof OrderOut
+     */
+    orderId?: string;
+    /**
+     * The status of the order.
+     * @type {string}
+     * @memberof OrderOut
+     */
+    readonly status?: OrderOutStatusEnum;
 }
 
 
@@ -106,29 +106,29 @@ export function OrderOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'orderId': json['order_id'] == null ? undefined : json['order_id'],
-        'name': json['name'] == null ? undefined : json['name'],
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
-        'lastUpdatedAt': json['last_updated_at'] == null ? undefined : (new Date(json['last_updated_at'])),
         'images': json['images'] == null ? undefined : ((json['images'] as Array<any>).map(ImageOutFromJSON)),
-        'status': json['status'] == null ? undefined : json['status'],
-        'isProcessing': json['is_processing'] == null ? undefined : json['is_processing'],
         'isMerging': json['is_merging'] == null ? undefined : json['is_merging'],
+        'isProcessing': json['is_processing'] == null ? undefined : json['is_processing'],
+        'lastUpdatedAt': json['last_updated_at'] == null ? undefined : (new Date(json['last_updated_at'])),
+        'name': json['name'] == null ? undefined : json['name'],
+        'orderId': json['order_id'] == null ? undefined : json['order_id'],
+        'status': json['status'] == null ? undefined : json['status'],
     };
 }
 
-export function OrderOutToJSON(value?: Omit<OrderOut, 'status'|'is_processing'> | null): any {
+export function OrderOutToJSON(value?: Omit<OrderOut, 'is_processing'|'status'> | null): any {
     if (value == null) {
         return value;
     }
     return {
         
-        'order_id': value['orderId'],
-        'name': value['name'],
         'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
-        'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
         'images': value['images'] == null ? undefined : ((value['images'] as Array<any>).map(ImageOutToJSON)),
         'is_merging': value['isMerging'],
+        'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
+        'name': value['name'],
+        'order_id': value['orderId'],
     };
 }
 

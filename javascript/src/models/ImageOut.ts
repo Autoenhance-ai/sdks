@@ -26,6 +26,72 @@ export interface ImageOut {
      */
     aiVersion?: string;
     /**
+     * The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    brightnessBoost?: ImageOutBrightnessBoostEnum;
+    /**
+     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    brightnessBoostExternal?: ImageOutBrightnessBoostExternalEnum;
+    /**
+     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    brightnessBoostInternal?: ImageOutBrightnessBoostInternalEnum;
+    /**
+     * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    clarityLevel?: ImageOutClarityLevelEnum;
+    /**
+     * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
+     * @type {string}
+     * @memberof ImageOut
+     */
+    cloudType?: ImageOutCloudTypeEnum;
+    /**
+     * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    contrastBoost?: ImageOutContrastBoostEnum;
+    /**
+     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    contrastBoostExternal?: ImageOutContrastBoostExternalEnum;
+    /**
+     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    contrastBoostInternal?: ImageOutContrastBoostInternalEnum;
+    /**
+     * The date the image was registered with Autoenhance.
+     * @type {number}
+     * @memberof ImageOut
+     */
+    dateAdded?: number;
+    /**
+     * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    denoiseLevel?: ImageOutDenoiseLevelEnum;
+    /**
+     * Whether image has been already downloaded and paid for.
+     * @type {boolean}
+     * @memberof ImageOut
+     */
+    downloaded?: boolean;
+    /**
      * Whether to enhance the image.
      * @type {boolean}
      * @memberof ImageOut
@@ -37,150 +103,6 @@ export interface ImageOut {
      * @memberof ImageOut
      */
     enhanceType?: ImageOutEnhanceTypeEnum;
-    /**
-     * Whether the sky replacement feature was enabled for the image.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    skyReplacement?: boolean;
-    /**
-     * Whether the vertical correction feature was enabled for the image.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    verticalCorrection?: boolean;
-    /**
-     * Correct any lens distortion in the image.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    lensCorrection?: boolean;
-    /**
-     * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    contrastBoost?: ImageOutContrastBoostEnum;
-    /**
-     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    contrastBoostInternal?: ImageOutContrastBoostInternalEnum;
-    /**
-     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    contrastBoostExternal?: ImageOutContrastBoostExternalEnum;
-    /**
-     * The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    brightnessBoost?: ImageOutBrightnessBoostEnum;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    brightnessBoostInternal?: ImageOutBrightnessBoostInternalEnum;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    brightnessBoostExternal?: ImageOutBrightnessBoostExternalEnum;
-    /**
-     * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    saturationLevel?: ImageOutSaturationLevelEnum;
-    /**
-     * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    sharpenLevel?: ImageOutSharpenLevelEnum;
-    /**
-     * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    denoiseLevel?: ImageOutDenoiseLevelEnum;
-    /**
-     * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageOut
-     */
-    clarityLevel?: ImageOutClarityLevelEnum;
-    /**
-     * Whether to blur any faces or license plates in the image.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    privacy?: boolean;
-    /**
-     * Whether to pull the windows in the image (used with AI version >= 4.0).
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    windowPull?: boolean;
-    /**
-     * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
-     * @type {string}
-     * @memberof ImageOut
-     */
-    cloudType?: ImageOutCloudTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageOut
-     */
-    imageId?: string;
-    /**
-     * The user ID of the user who uploaded (owns) the image.
-     * @type {string}
-     * @memberof ImageOut
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageOut
-     */
-    orderId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImageOut
-     */
-    imageName?: string;
-    /**
-     * The image type for the image.
-     * @type {string}
-     * @memberof ImageOut
-     */
-    imageType?: string;
-    /**
-     * The date the image was registered with Autoenhance.
-     * @type {number}
-     * @memberof ImageOut
-     */
-    dateAdded?: number;
-    /**
-     * The detected scene of the image i.e garden, patio, kitchen, etc.
-     * @type {string}
-     * @memberof ImageOut
-     */
-    scene?: string;
-    /**
-     * The status of the order.
-     * @type {string}
-     * @memberof ImageOut
-     */
-    readonly status?: ImageOutStatusEnum;
     /**
      * Whether the image has been enhanced.
      * @type {boolean}
@@ -194,11 +116,47 @@ export interface ImageOut {
      */
     error?: boolean;
     /**
-     * Whether image has been already downloaded and paid for.
+     * 
+     * @type {string}
+     * @memberof ImageOut
+     */
+    imageId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageOut
+     */
+    imageName?: string;
+    /**
+     * The image type for the image.
+     * @type {string}
+     * @memberof ImageOut
+     */
+    imageType?: string;
+    /**
+     * Whether the image is a 360° image
+     * @type {any}
+     * @memberof ImageOut
+     */
+    readonly isThreesixty?: any;
+    /**
+     * Correct any lens distortion in the image.
      * @type {boolean}
      * @memberof ImageOut
      */
-    downloaded?: boolean;
+    lensCorrection?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImageOut
+     */
+    orderId?: string;
+    /**
+     * Whether to blur any faces or license plates in the image.
+     * @type {boolean}
+     * @memberof ImageOut
+     */
+    privacy?: boolean;
     /**
      * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
      * @type {number}
@@ -206,61 +164,55 @@ export interface ImageOut {
      */
     rating?: number;
     /**
-     * Whether the image is a 360° image
-     * @type {any}
+     * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
      * @memberof ImageOut
      */
-    readonly isThreesixty?: any;
+    saturationLevel?: ImageOutSaturationLevelEnum;
+    /**
+     * The detected scene of the image i.e garden, patio, kitchen, etc.
+     * @type {string}
+     * @memberof ImageOut
+     */
+    scene?: string;
+    /**
+     * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
+     * @type {string}
+     * @memberof ImageOut
+     */
+    sharpenLevel?: ImageOutSharpenLevelEnum;
+    /**
+     * Whether the sky replacement feature was enabled for the image.
+     * @type {boolean}
+     * @memberof ImageOut
+     */
+    skyReplacement?: boolean;
+    /**
+     * The status of the order.
+     * @type {string}
+     * @memberof ImageOut
+     */
+    readonly status?: ImageOutStatusEnum;
+    /**
+     * The user ID of the user who uploaded (owns) the image.
+     * @type {string}
+     * @memberof ImageOut
+     */
+    userId?: string;
+    /**
+     * Whether the vertical correction feature was enabled for the image.
+     * @type {boolean}
+     * @memberof ImageOut
+     */
+    verticalCorrection?: boolean;
+    /**
+     * Whether to pull the windows in the image (used with AI version >= 4.0).
+     * @type {boolean}
+     * @memberof ImageOut
+     */
+    windowPull?: boolean;
 }
 
-
-/**
- * @export
- */
-export const ImageOutEnhanceTypeEnum = {
-    Property: 'property',
-    PropertyUsa: 'property_usa',
-    Warm: 'warm',
-    Neutral: 'neutral',
-    Authentic: 'authentic'
-} as const;
-export type ImageOutEnhanceTypeEnum = typeof ImageOutEnhanceTypeEnum[keyof typeof ImageOutEnhanceTypeEnum];
-
-/**
- * @export
- */
-export const ImageOutContrastBoostEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageOutContrastBoostEnum = typeof ImageOutContrastBoostEnum[keyof typeof ImageOutContrastBoostEnum];
-
-/**
- * @export
- */
-export const ImageOutContrastBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageOutContrastBoostInternalEnum = typeof ImageOutContrastBoostInternalEnum[keyof typeof ImageOutContrastBoostInternalEnum];
-
-/**
- * @export
- */
-export const ImageOutContrastBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageOutContrastBoostExternalEnum = typeof ImageOutContrastBoostExternalEnum[keyof typeof ImageOutContrastBoostExternalEnum];
 
 /**
  * @export
@@ -277,6 +229,18 @@ export type ImageOutBrightnessBoostEnum = typeof ImageOutBrightnessBoostEnum[key
 /**
  * @export
  */
+export const ImageOutBrightnessBoostExternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageOutBrightnessBoostExternalEnum = typeof ImageOutBrightnessBoostExternalEnum[keyof typeof ImageOutBrightnessBoostExternalEnum];
+
+/**
+ * @export
+ */
 export const ImageOutBrightnessBoostInternalEnum = {
     None: 'NONE',
     Low: 'LOW',
@@ -289,14 +253,85 @@ export type ImageOutBrightnessBoostInternalEnum = typeof ImageOutBrightnessBoost
 /**
  * @export
  */
-export const ImageOutBrightnessBoostExternalEnum = {
+export const ImageOutClarityLevelEnum = {
     None: 'NONE',
     Low: 'LOW',
     Medium: 'MEDIUM',
     High: 'HIGH',
     Null: 'null'
 } as const;
-export type ImageOutBrightnessBoostExternalEnum = typeof ImageOutBrightnessBoostExternalEnum[keyof typeof ImageOutBrightnessBoostExternalEnum];
+export type ImageOutClarityLevelEnum = typeof ImageOutClarityLevelEnum[keyof typeof ImageOutClarityLevelEnum];
+
+/**
+ * @export
+ */
+export const ImageOutCloudTypeEnum = {
+    Clear: 'CLEAR',
+    LowCloud: 'LOW_CLOUD',
+    HighCloud: 'HIGH_CLOUD',
+    Null: 'null'
+} as const;
+export type ImageOutCloudTypeEnum = typeof ImageOutCloudTypeEnum[keyof typeof ImageOutCloudTypeEnum];
+
+/**
+ * @export
+ */
+export const ImageOutContrastBoostEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageOutContrastBoostEnum = typeof ImageOutContrastBoostEnum[keyof typeof ImageOutContrastBoostEnum];
+
+/**
+ * @export
+ */
+export const ImageOutContrastBoostExternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageOutContrastBoostExternalEnum = typeof ImageOutContrastBoostExternalEnum[keyof typeof ImageOutContrastBoostExternalEnum];
+
+/**
+ * @export
+ */
+export const ImageOutContrastBoostInternalEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageOutContrastBoostInternalEnum = typeof ImageOutContrastBoostInternalEnum[keyof typeof ImageOutContrastBoostInternalEnum];
+
+/**
+ * @export
+ */
+export const ImageOutDenoiseLevelEnum = {
+    None: 'NONE',
+    Low: 'LOW',
+    Medium: 'MEDIUM',
+    High: 'HIGH',
+    Null: 'null'
+} as const;
+export type ImageOutDenoiseLevelEnum = typeof ImageOutDenoiseLevelEnum[keyof typeof ImageOutDenoiseLevelEnum];
+
+/**
+ * @export
+ */
+export const ImageOutEnhanceTypeEnum = {
+    Property: 'property',
+    PropertyUsa: 'property_usa',
+    Warm: 'warm',
+    Neutral: 'neutral',
+    Authentic: 'authentic'
+} as const;
+export type ImageOutEnhanceTypeEnum = typeof ImageOutEnhanceTypeEnum[keyof typeof ImageOutEnhanceTypeEnum];
 
 /**
  * @export
@@ -321,41 +356,6 @@ export const ImageOutSharpenLevelEnum = {
     Null: 'null'
 } as const;
 export type ImageOutSharpenLevelEnum = typeof ImageOutSharpenLevelEnum[keyof typeof ImageOutSharpenLevelEnum];
-
-/**
- * @export
- */
-export const ImageOutDenoiseLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageOutDenoiseLevelEnum = typeof ImageOutDenoiseLevelEnum[keyof typeof ImageOutDenoiseLevelEnum];
-
-/**
- * @export
- */
-export const ImageOutClarityLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageOutClarityLevelEnum = typeof ImageOutClarityLevelEnum[keyof typeof ImageOutClarityLevelEnum];
-
-/**
- * @export
- */
-export const ImageOutCloudTypeEnum = {
-    Clear: 'CLEAR',
-    LowCloud: 'LOW_CLOUD',
-    HighCloud: 'HIGH_CLOUD',
-    Null: 'null'
-} as const;
-export type ImageOutCloudTypeEnum = typeof ImageOutCloudTypeEnum[keyof typeof ImageOutCloudTypeEnum];
 
 /**
  * @export
@@ -387,76 +387,76 @@ export function ImageOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'aiVersion': json['ai_version'] == null ? undefined : json['ai_version'],
+        'brightnessBoost': json['brightness_boost'] == null ? undefined : json['brightness_boost'],
+        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
+        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
+        'clarityLevel': json['clarity_level'] == null ? undefined : json['clarity_level'],
+        'cloudType': json['cloud_type'] == null ? undefined : json['cloud_type'],
+        'contrastBoost': json['contrast_boost'] == null ? undefined : json['contrast_boost'],
+        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
+        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
+        'dateAdded': json['date_added'] == null ? undefined : json['date_added'],
+        'denoiseLevel': json['denoise_level'] == null ? undefined : json['denoise_level'],
+        'downloaded': json['downloaded'] == null ? undefined : json['downloaded'],
         'enhance': json['enhance'] == null ? undefined : json['enhance'],
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
-        'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
-        'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
-        'lensCorrection': json['lens_correction'] == null ? undefined : json['lens_correction'],
-        'contrastBoost': json['contrast_boost'] == null ? undefined : json['contrast_boost'],
-        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
-        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
-        'brightnessBoost': json['brightness_boost'] == null ? undefined : json['brightness_boost'],
-        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
-        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
-        'saturationLevel': json['saturation_level'] == null ? undefined : json['saturation_level'],
-        'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
-        'denoiseLevel': json['denoise_level'] == null ? undefined : json['denoise_level'],
-        'clarityLevel': json['clarity_level'] == null ? undefined : json['clarity_level'],
-        'privacy': json['privacy'] == null ? undefined : json['privacy'],
-        'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
-        'cloudType': json['cloud_type'] == null ? undefined : json['cloud_type'],
-        'imageId': json['image_id'] == null ? undefined : json['image_id'],
-        'userId': json['user_id'] == null ? undefined : json['user_id'],
-        'orderId': json['order_id'] == null ? undefined : json['order_id'],
-        'imageName': json['image_name'] == null ? undefined : json['image_name'],
-        'imageType': json['image_type'] == null ? undefined : json['image_type'],
-        'dateAdded': json['date_added'] == null ? undefined : json['date_added'],
-        'scene': json['scene'] == null ? undefined : json['scene'],
-        'status': json['status'] == null ? undefined : json['status'],
         'enhanced': json['enhanced'] == null ? undefined : json['enhanced'],
         'error': json['error'] == null ? undefined : json['error'],
-        'downloaded': json['downloaded'] == null ? undefined : json['downloaded'],
-        'rating': json['rating'] == null ? undefined : json['rating'],
+        'imageId': json['image_id'] == null ? undefined : json['image_id'],
+        'imageName': json['image_name'] == null ? undefined : json['image_name'],
+        'imageType': json['image_type'] == null ? undefined : json['image_type'],
         'isThreesixty': json['is_threesixty'] == null ? undefined : json['is_threesixty'],
+        'lensCorrection': json['lens_correction'] == null ? undefined : json['lens_correction'],
+        'orderId': json['order_id'] == null ? undefined : json['order_id'],
+        'privacy': json['privacy'] == null ? undefined : json['privacy'],
+        'rating': json['rating'] == null ? undefined : json['rating'],
+        'saturationLevel': json['saturation_level'] == null ? undefined : json['saturation_level'],
+        'scene': json['scene'] == null ? undefined : json['scene'],
+        'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
+        'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
+        'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
+        'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
     };
 }
 
-export function ImageOutToJSON(value?: Omit<ImageOut, 'status'|'is_threesixty'> | null): any {
+export function ImageOutToJSON(value?: Omit<ImageOut, 'is_threesixty'|'status'> | null): any {
     if (value == null) {
         return value;
     }
     return {
         
         'ai_version': value['aiVersion'],
+        'brightness_boost': value['brightnessBoost'],
+        'brightness_boost_external': value['brightnessBoostExternal'],
+        'brightness_boost_internal': value['brightnessBoostInternal'],
+        'clarity_level': value['clarityLevel'],
+        'cloud_type': value['cloudType'],
+        'contrast_boost': value['contrastBoost'],
+        'contrast_boost_external': value['contrastBoostExternal'],
+        'contrast_boost_internal': value['contrastBoostInternal'],
+        'date_added': value['dateAdded'],
+        'denoise_level': value['denoiseLevel'],
+        'downloaded': value['downloaded'],
         'enhance': value['enhance'],
         'enhance_type': value['enhanceType'],
-        'sky_replacement': value['skyReplacement'],
-        'vertical_correction': value['verticalCorrection'],
-        'lens_correction': value['lensCorrection'],
-        'contrast_boost': value['contrastBoost'],
-        'contrast_boost_internal': value['contrastBoostInternal'],
-        'contrast_boost_external': value['contrastBoostExternal'],
-        'brightness_boost': value['brightnessBoost'],
-        'brightness_boost_internal': value['brightnessBoostInternal'],
-        'brightness_boost_external': value['brightnessBoostExternal'],
-        'saturation_level': value['saturationLevel'],
-        'sharpen_level': value['sharpenLevel'],
-        'denoise_level': value['denoiseLevel'],
-        'clarity_level': value['clarityLevel'],
-        'privacy': value['privacy'],
-        'window_pull': value['windowPull'],
-        'cloud_type': value['cloudType'],
-        'image_id': value['imageId'],
-        'user_id': value['userId'],
-        'order_id': value['orderId'],
-        'image_name': value['imageName'],
-        'image_type': value['imageType'],
-        'date_added': value['dateAdded'],
-        'scene': value['scene'],
         'enhanced': value['enhanced'],
         'error': value['error'],
-        'downloaded': value['downloaded'],
+        'image_id': value['imageId'],
+        'image_name': value['imageName'],
+        'image_type': value['imageType'],
+        'lens_correction': value['lensCorrection'],
+        'order_id': value['orderId'],
+        'privacy': value['privacy'],
         'rating': value['rating'],
+        'saturation_level': value['saturationLevel'],
+        'scene': value['scene'],
+        'sharpen_level': value['sharpenLevel'],
+        'sky_replacement': value['skyReplacement'],
+        'user_id': value['userId'],
+        'vertical_correction': value['verticalCorrection'],
+        'window_pull': value['windowPull'],
     };
 }
 

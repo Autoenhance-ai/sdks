@@ -32,17 +32,17 @@ export interface ReportIn {
      */
     comment?: string;
     /**
-     * 
-     * @type {string}
-     * @memberof ReportIn
-     */
-    source?: ReportInSourceEnum;
-    /**
      * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
      * @type {number}
      * @memberof ReportIn
      */
     score?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportIn
+     */
+    source?: ReportInSourceEnum;
 }
 
 
@@ -103,8 +103,8 @@ export function ReportInFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'categories': json['categories'],
         'comment': json['comment'] == null ? undefined : json['comment'],
-        'source': json['source'] == null ? undefined : json['source'],
         'score': json['score'] == null ? undefined : json['score'],
+        'source': json['source'] == null ? undefined : json['source'],
     };
 }
 
@@ -116,8 +116,8 @@ export function ReportInToJSON(value?: ReportIn | null): any {
         
         'categories': value['categories'],
         'comment': value['comment'],
-        'source': value['source'],
         'score': value['score'],
+        'source': value['source'],
     };
 }
 
