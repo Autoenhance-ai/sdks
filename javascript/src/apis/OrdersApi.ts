@@ -46,7 +46,7 @@ export interface DeleteOrderRequest {
 }
 
 export interface ListOrdersRequest {
-    offset?: string;
+    offset?: string | null;
     perPage?: number;
 }
 

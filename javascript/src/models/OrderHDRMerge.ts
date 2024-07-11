@@ -30,55 +30,55 @@ export interface OrderHDRMerge {
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    brightnessBoost?: OrderHDRMergeBrightnessBoostEnum;
+    brightnessBoost?: OrderHDRMergeBrightnessBoostEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    brightnessBoostExternal?: OrderHDRMergeBrightnessBoostExternalEnum;
+    brightnessBoostExternal?: OrderHDRMergeBrightnessBoostExternalEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    brightnessBoostInternal?: OrderHDRMergeBrightnessBoostInternalEnum;
+    brightnessBoostInternal?: OrderHDRMergeBrightnessBoostInternalEnum | null;
     /**
      * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    clarityLevel?: OrderHDRMergeClarityLevelEnum;
+    clarityLevel?: OrderHDRMergeClarityLevelEnum | null;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    cloudType?: OrderHDRMergeCloudTypeEnum;
+    cloudType?: OrderHDRMergeCloudTypeEnum | null;
     /**
      * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    contrastBoost?: OrderHDRMergeContrastBoostEnum;
+    contrastBoost?: OrderHDRMergeContrastBoostEnum | null;
     /**
      * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    contrastBoostExternal?: OrderHDRMergeContrastBoostExternalEnum;
+    contrastBoostExternal?: OrderHDRMergeContrastBoostExternalEnum | null;
     /**
      * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    contrastBoostInternal?: OrderHDRMergeContrastBoostInternalEnum;
+    contrastBoostInternal?: OrderHDRMergeContrastBoostInternalEnum | null;
     /**
      * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    denoiseLevel?: OrderHDRMergeDenoiseLevelEnum;
+    denoiseLevel?: OrderHDRMergeDenoiseLevelEnum | null;
     /**
      * Whether to enhance the image.
      * @type {boolean}
@@ -108,19 +108,19 @@ export interface OrderHDRMerge {
      * @type {boolean}
      * @memberof OrderHDRMerge
      */
-    privacy?: boolean;
+    privacy?: boolean | null;
     /**
      * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    saturationLevel?: OrderHDRMergeSaturationLevelEnum;
+    saturationLevel?: OrderHDRMergeSaturationLevelEnum | null;
     /**
      * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    sharpenLevel?: OrderHDRMergeSharpenLevelEnum;
+    sharpenLevel?: OrderHDRMergeSharpenLevelEnum | null;
     /**
      * Enable the replacement of the original sky for a summer sky.
      * @type {boolean}
@@ -138,7 +138,7 @@ export interface OrderHDRMerge {
      * @type {boolean}
      * @memberof OrderHDRMerge
      */
-    windowPull?: boolean;
+    windowPull?: boolean | null;
 }
 
 

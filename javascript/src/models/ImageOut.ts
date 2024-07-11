@@ -30,49 +30,49 @@ export interface ImageOut {
      * @type {string}
      * @memberof ImageOut
      */
-    brightnessBoost?: ImageOutBrightnessBoostEnum;
+    brightnessBoost?: ImageOutBrightnessBoostEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    brightnessBoostExternal?: ImageOutBrightnessBoostExternalEnum;
+    brightnessBoostExternal?: ImageOutBrightnessBoostExternalEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    brightnessBoostInternal?: ImageOutBrightnessBoostInternalEnum;
+    brightnessBoostInternal?: ImageOutBrightnessBoostInternalEnum | null;
     /**
      * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    clarityLevel?: ImageOutClarityLevelEnum;
+    clarityLevel?: ImageOutClarityLevelEnum | null;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
      * @memberof ImageOut
      */
-    cloudType?: ImageOutCloudTypeEnum;
+    cloudType?: ImageOutCloudTypeEnum | null;
     /**
      * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    contrastBoost?: ImageOutContrastBoostEnum;
+    contrastBoost?: ImageOutContrastBoostEnum | null;
     /**
      * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    contrastBoostExternal?: ImageOutContrastBoostExternalEnum;
+    contrastBoostExternal?: ImageOutContrastBoostExternalEnum | null;
     /**
      * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageOut
      */
-    contrastBoostInternal?: ImageOutContrastBoostInternalEnum;
+    contrastBoostInternal?: ImageOutContrastBoostInternalEnum | null;
     /**
      * The date the image was registered with Autoenhance.
      * @type {number}
@@ -84,7 +84,7 @@ export interface ImageOut {
      * @type {string}
      * @memberof ImageOut
      */
-    denoiseLevel?: ImageOutDenoiseLevelEnum;
+    denoiseLevel?: ImageOutDenoiseLevelEnum | null;
     /**
      * Whether image has been already downloaded and paid for.
      * @type {boolean}
@@ -138,7 +138,7 @@ export interface ImageOut {
      * @type {any}
      * @memberof ImageOut
      */
-    readonly isThreesixty?: any;
+    readonly isThreesixty?: any | null;
     /**
      * Correct any lens distortion in the image.
      * @type {boolean}
@@ -156,7 +156,7 @@ export interface ImageOut {
      * @type {boolean}
      * @memberof ImageOut
      */
-    privacy?: boolean;
+    privacy?: boolean | null;
     /**
      * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
      * @type {number}
@@ -168,7 +168,7 @@ export interface ImageOut {
      * @type {string}
      * @memberof ImageOut
      */
-    saturationLevel?: ImageOutSaturationLevelEnum;
+    saturationLevel?: ImageOutSaturationLevelEnum | null;
     /**
      * The detected scene of the image i.e garden, patio, kitchen, etc.
      * @type {string}
@@ -180,7 +180,7 @@ export interface ImageOut {
      * @type {string}
      * @memberof ImageOut
      */
-    sharpenLevel?: ImageOutSharpenLevelEnum;
+    sharpenLevel?: ImageOutSharpenLevelEnum | null;
     /**
      * Whether the sky replacement feature was enabled for the image.
      * @type {boolean}
@@ -210,7 +210,7 @@ export interface ImageOut {
      * @type {boolean}
      * @memberof ImageOut
      */
-    windowPull?: boolean;
+    windowPull?: boolean | null;
 }
 
 

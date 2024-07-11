@@ -30,49 +30,49 @@ export interface ImageCreatedOut {
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    brightnessBoost?: ImageCreatedOutBrightnessBoostEnum;
+    brightnessBoost?: ImageCreatedOutBrightnessBoostEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    brightnessBoostExternal?: ImageCreatedOutBrightnessBoostExternalEnum;
+    brightnessBoostExternal?: ImageCreatedOutBrightnessBoostExternalEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    brightnessBoostInternal?: ImageCreatedOutBrightnessBoostInternalEnum;
+    brightnessBoostInternal?: ImageCreatedOutBrightnessBoostInternalEnum | null;
     /**
      * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    clarityLevel?: ImageCreatedOutClarityLevelEnum;
+    clarityLevel?: ImageCreatedOutClarityLevelEnum | null;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    cloudType?: ImageCreatedOutCloudTypeEnum;
+    cloudType?: ImageCreatedOutCloudTypeEnum | null;
     /**
      * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    contrastBoost?: ImageCreatedOutContrastBoostEnum;
+    contrastBoost?: ImageCreatedOutContrastBoostEnum | null;
     /**
      * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    contrastBoostExternal?: ImageCreatedOutContrastBoostExternalEnum;
+    contrastBoostExternal?: ImageCreatedOutContrastBoostExternalEnum | null;
     /**
      * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    contrastBoostInternal?: ImageCreatedOutContrastBoostInternalEnum;
+    contrastBoostInternal?: ImageCreatedOutContrastBoostInternalEnum | null;
     /**
      * The date the image was registered with Autoenhance.
      * @type {number}
@@ -84,7 +84,7 @@ export interface ImageCreatedOut {
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    denoiseLevel?: ImageCreatedOutDenoiseLevelEnum;
+    denoiseLevel?: ImageCreatedOutDenoiseLevelEnum | null;
     /**
      * Whether image has been already downloaded and paid for.
      * @type {boolean}
@@ -138,7 +138,7 @@ export interface ImageCreatedOut {
      * @type {any}
      * @memberof ImageCreatedOut
      */
-    readonly isThreesixty?: any;
+    readonly isThreesixty?: any | null;
     /**
      * Correct any lens distortion in the image.
      * @type {boolean}
@@ -156,7 +156,7 @@ export interface ImageCreatedOut {
      * @type {boolean}
      * @memberof ImageCreatedOut
      */
-    privacy?: boolean;
+    privacy?: boolean | null;
     /**
      * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
      * @type {number}
@@ -168,13 +168,13 @@ export interface ImageCreatedOut {
      * @type {any}
      * @memberof ImageCreatedOut
      */
-    readonly s3PutObjectUrl?: any;
+    readonly s3PutObjectUrl?: any | null;
     /**
      * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    saturationLevel?: ImageCreatedOutSaturationLevelEnum;
+    saturationLevel?: ImageCreatedOutSaturationLevelEnum | null;
     /**
      * The detected scene of the image i.e garden, patio, kitchen, etc.
      * @type {string}
@@ -186,7 +186,7 @@ export interface ImageCreatedOut {
      * @type {string}
      * @memberof ImageCreatedOut
      */
-    sharpenLevel?: ImageCreatedOutSharpenLevelEnum;
+    sharpenLevel?: ImageCreatedOutSharpenLevelEnum | null;
     /**
      * Whether the sky replacement feature was enabled for the image.
      * @type {boolean}
@@ -216,7 +216,7 @@ export interface ImageCreatedOut {
      * @type {boolean}
      * @memberof ImageCreatedOut
      */
-    windowPull?: boolean;
+    windowPull?: boolean | null;
 }
 
 

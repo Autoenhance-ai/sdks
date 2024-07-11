@@ -49,7 +49,7 @@ export interface OrderOut {
      * @type {any}
      * @memberof OrderOut
      */
-    readonly isProcessing?: any;
+    readonly isProcessing?: any | null;
     /**
      * The last updated date of the order.
      * @type {Date}

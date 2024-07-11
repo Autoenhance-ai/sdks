@@ -30,31 +30,31 @@ export interface ImageIn {
      * @type {string}
      * @memberof ImageIn
      */
-    brightnessBoost?: ImageInBrightnessBoostEnum;
+    brightnessBoost?: ImageInBrightnessBoostEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    brightnessBoostExternal?: ImageInBrightnessBoostExternalEnum;
+    brightnessBoostExternal?: ImageInBrightnessBoostExternalEnum | null;
     /**
      * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    brightnessBoostInternal?: ImageInBrightnessBoostInternalEnum;
+    brightnessBoostInternal?: ImageInBrightnessBoostInternalEnum | null;
     /**
      * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    clarityLevel?: ImageInClarityLevelEnum;
+    clarityLevel?: ImageInClarityLevelEnum | null;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
      * @memberof ImageIn
      */
-    cloudType?: ImageInCloudTypeEnum;
+    cloudType?: ImageInCloudTypeEnum | null;
     /**
      * The MIME type of the image i.e. image/jpeg, image/png, etc.
      * @type {string}
@@ -66,25 +66,25 @@ export interface ImageIn {
      * @type {string}
      * @memberof ImageIn
      */
-    contrastBoost?: ImageInContrastBoostEnum;
+    contrastBoost?: ImageInContrastBoostEnum | null;
     /**
      * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    contrastBoostExternal?: ImageInContrastBoostExternalEnum;
+    contrastBoostExternal?: ImageInContrastBoostExternalEnum | null;
     /**
      * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    contrastBoostInternal?: ImageInContrastBoostInternalEnum;
+    contrastBoostInternal?: ImageInContrastBoostInternalEnum | null;
     /**
      * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    denoiseLevel?: ImageInDenoiseLevelEnum;
+    denoiseLevel?: ImageInDenoiseLevelEnum | null;
     /**
      * Whether to enhance the image.
      * @type {boolean}
@@ -126,7 +126,7 @@ export interface ImageIn {
      * @type {boolean}
      * @memberof ImageIn
      */
-    privacy?: boolean;
+    privacy?: boolean | null;
     /**
      * A rating between 0 and 5 on how good the image enhancmeent. Higher is better.
      * @type {number}
@@ -138,13 +138,13 @@ export interface ImageIn {
      * @type {string}
      * @memberof ImageIn
      */
-    saturationLevel?: ImageInSaturationLevelEnum;
+    saturationLevel?: ImageInSaturationLevelEnum | null;
     /**
      * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
      * @type {string}
      * @memberof ImageIn
      */
-    sharpenLevel?: ImageInSharpenLevelEnum;
+    sharpenLevel?: ImageInSharpenLevelEnum | null;
     /**
      * Enable the replacement of the original sky for a summer sky.
      * @type {boolean}
@@ -168,7 +168,7 @@ export interface ImageIn {
      * @type {boolean}
      * @memberof ImageIn
      */
-    windowPull?: boolean;
+    windowPull?: boolean | null;
 }
 
 
