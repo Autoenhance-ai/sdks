@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   HTTPError,
+  OrderBracketsOut,
   OrderHDRMerge,
   OrderIn,
   OrderOut,
@@ -25,6 +26,8 @@ import type {
 import {
     HTTPErrorFromJSON,
     HTTPErrorToJSON,
+    OrderBracketsOutFromJSON,
+    OrderBracketsOutToJSON,
     OrderHDRMergeFromJSON,
     OrderHDRMergeToJSON,
     OrderInFromJSON,
@@ -62,6 +65,10 @@ export interface RetrieveOrderRequest {
 export interface UpdateOrderRequest {
     id: string;
     orderIn?: OrderIn;
+}
+
+export interface V3OrdersOrderIdBracketsGetRequest {
+    orderId: string;
 }
 
 /**
@@ -296,6 +303,41 @@ export class OrdersApi extends runtime.BaseAPI {
      */
     async updateOrder(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderOut> {
         const response = await this.updateOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a specific order.
+     * Retrieve Order
+     */
+    async v3OrdersOrderIdBracketsGetRaw(requestParameters: V3OrdersOrderIdBracketsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderBracketsOut>> {
+        if (requestParameters['orderId'] == null) {
+            throw new runtime.RequiredError(
+                'orderId',
+                'Required parameter "orderId" was null or undefined when calling v3OrdersOrderIdBracketsGet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v3/orders/{order_id}/brackets`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters['orderId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderBracketsOutFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a specific order.
+     * Retrieve Order
+     */
+    async v3OrdersOrderIdBracketsGet(requestParameters: V3OrdersOrderIdBracketsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderBracketsOut> {
+        const response = await this.v3OrdersOrderIdBracketsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -116,6 +116,12 @@ export interface ImageOut {
      */
     error?: boolean;
     /**
+     * Reason for the enhancement error.
+     * @type {string}
+     * @memberof ImageOut
+     */
+    errorReason?: string;
+    /**
      * 
      * @type {string}
      * @memberof ImageOut
@@ -145,6 +151,12 @@ export interface ImageOut {
      * @memberof ImageOut
      */
     lensCorrection?: boolean;
+    /**
+     * Metadata for the image.
+     * @type {object}
+     * @memberof ImageOut
+     */
+    metadata?: object;
     /**
      * 
      * @type {string}
@@ -402,11 +414,13 @@ export function ImageOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
         'enhanced': json['enhanced'] == null ? undefined : json['enhanced'],
         'error': json['error'] == null ? undefined : json['error'],
+        'errorReason': json['error_reason'] == null ? undefined : json['error_reason'],
         'imageId': json['image_id'] == null ? undefined : json['image_id'],
         'imageName': json['image_name'] == null ? undefined : json['image_name'],
         'imageType': json['image_type'] == null ? undefined : json['image_type'],
         'isThreesixty': json['is_threesixty'] == null ? undefined : json['is_threesixty'],
         'lensCorrection': json['lens_correction'] == null ? undefined : json['lens_correction'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'orderId': json['order_id'] == null ? undefined : json['order_id'],
         'privacy': json['privacy'] == null ? undefined : json['privacy'],
         'rating': json['rating'] == null ? undefined : json['rating'],
@@ -443,10 +457,12 @@ export function ImageOutToJSON(value?: Omit<ImageOut, 'is_threesixty'|'status'> 
         'enhance_type': value['enhanceType'],
         'enhanced': value['enhanced'],
         'error': value['error'],
+        'error_reason': value['errorReason'],
         'image_id': value['imageId'],
         'image_name': value['imageName'],
         'image_type': value['imageType'],
         'lens_correction': value['lensCorrection'],
+        'metadata': value['metadata'],
         'order_id': value['orderId'],
         'privacy': value['privacy'],
         'rating': value['rating'],

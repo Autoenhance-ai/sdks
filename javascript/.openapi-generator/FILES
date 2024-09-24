@@ -11,11 +11,13 @@ src/custom/ImagesApi.ts
 src/custom/OrdersApi.ts
 src/custom/index.ts
 src/index.ts
+src/models/BracketOut.ts
 src/models/HTTPError.ts
 src/models/ImageCreatedOut.ts
 src/models/ImageIn.ts
 src/models/ImageInUpdate.ts
 src/models/ImageOut.ts
+src/models/OrderBracketsOut.ts
 src/models/OrderHDRMerge.ts
 src/models/OrderIn.ts
 src/models/OrderOut.ts

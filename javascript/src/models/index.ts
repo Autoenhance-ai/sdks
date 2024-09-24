@@ -1,10 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './BracketOut';
 export * from './HTTPError';
 export * from './ImageCreatedOut';
 export * from './ImageIn';
 export * from './ImageInUpdate';
 export * from './ImageOut';
+export * from './OrderBracketsOut';
 export * from './OrderHDRMerge';
 export * from './OrderIn';
 export * from './OrderOut';
