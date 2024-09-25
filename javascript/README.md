@@ -1,3 +1,5 @@
+## @autoenhance.ai/javascript
+
 <p align="center">
   <img src="https://uploads-ssl.webflow.com/6151887923ecfa4ac66a9e69/65168cccea1c9f0fcb33652c_logo-adaptive.svg" alt="Autoenhance.ai logo" align="center">
 </p>
