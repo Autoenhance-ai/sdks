@@ -104,24 +104,6 @@ export interface ImageOut {
      */
     enhanceType?: ImageOutEnhanceTypeEnum;
     /**
-     * Whether the image has been enhanced.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    enhanced?: boolean;
-    /**
-     * Whether the image has an error.
-     * @type {boolean}
-     * @memberof ImageOut
-     */
-    error?: boolean;
-    /**
-     * Reason for the enhancement error.
-     * @type {string}
-     * @memberof ImageOut
-     */
-    errorReason?: string;
-    /**
      * 
      * @type {string}
      * @memberof ImageOut
@@ -205,6 +187,12 @@ export interface ImageOut {
      * @memberof ImageOut
      */
     readonly status?: ImageOutStatusEnum;
+    /**
+     * Reason for the image's current status
+     * @type {any}
+     * @memberof ImageOut
+     */
+    readonly statusReason?: any | null;
     /**
      * The user ID of the user who uploaded (owns) the image.
      * @type {string}
@@ -376,7 +364,8 @@ export const ImageOutStatusEnum = {
     Waiting: 'waiting',
     Processing: 'processing',
     Processed: 'processed',
-    Error: 'error'
+    Error: 'error',
+    Expired: 'expired'
 } as const;
 export type ImageOutStatusEnum = typeof ImageOutStatusEnum[keyof typeof ImageOutStatusEnum];
 
@@ -412,9 +401,6 @@ export function ImageOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'downloaded': json['downloaded'] == null ? undefined : json['downloaded'],
         'enhance': json['enhance'] == null ? undefined : json['enhance'],
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
-        'enhanced': json['enhanced'] == null ? undefined : json['enhanced'],
-        'error': json['error'] == null ? undefined : json['error'],
-        'errorReason': json['error_reason'] == null ? undefined : json['error_reason'],
         'imageId': json['image_id'] == null ? undefined : json['image_id'],
         'imageName': json['image_name'] == null ? undefined : json['image_name'],
         'imageType': json['image_type'] == null ? undefined : json['image_type'],
@@ -429,13 +415,14 @@ export function ImageOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
         'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
         'status': json['status'] == null ? undefined : json['status'],
+        'statusReason': json['status_reason'] == null ? undefined : json['status_reason'],
         'userId': json['user_id'] == null ? undefined : json['user_id'],
         'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
         'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
     };
 }
 
-export function ImageOutToJSON(value?: Omit<ImageOut, 'is_threesixty'|'status'> | null): any {
+export function ImageOutToJSON(value?: Omit<ImageOut, 'is_threesixty'|'status'|'status_reason'> | null): any {
     if (value == null) {
         return value;
     }
@@ -455,9 +442,6 @@ export function ImageOutToJSON(value?: Omit<ImageOut, 'is_threesixty'|'status'> 
         'downloaded': value['downloaded'],
         'enhance': value['enhance'],
         'enhance_type': value['enhanceType'],
-        'enhanced': value['enhanced'],
-        'error': value['error'],
-        'error_reason': value['errorReason'],
         'image_id': value['imageId'],
         'image_name': value['imageName'],
         'image_type': value['imageType'],
