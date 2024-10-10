@@ -6,3 +6,4 @@ if there is one you think we should add then you can contact us at [support@auto
 | Programming Language | Repository Folder |
 |----------------------|------------------|
 | JavaScript           | [javascript](javascript/) |
+| Python               | [python](python/) |
