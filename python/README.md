@@ -4,9 +4,9 @@
   <img src="https://uploads-ssl.webflow.com/6151887923ecfa4ac66a9e69/65168cccea1c9f0fcb33652c_logo-adaptive.svg" alt="Autoenhance.ai logo" align="center">
 </p>
 
-<h1 align="center">Autoenhance.ai Javascript SDK</h1>
+<h1 align="center">Autoenhance.ai Python SDK</h1>
 
-<p align="center">The AI photo editor that enhances your workflow now available with easy and quick Javascript SDK including Typescript support!</p>
+<p align="center">The AI photo editor that enhances your workflow now available with easy and quick Python SDK</p>
 
 ## 👋 Navigation
 
@@ -23,7 +23,7 @@ Our SDK will help you easily integrate Autoenhance.ai into your codebase in a ma
 
 ## <a id="requirements"></a>⚠️ Requirements
 
-* **Basic Javascript knowledge and a project set up**
+* **Basic Python knowledge and a project set up**
 * **Autoenhance.ai API key**
 Don't have an API key ? Sign up in our [Webapp](https://www.app.autoenhance.ai/login), and you will find it on the [API page](https://app.autoenhance.ai/application-interface)!
 
@@ -32,13 +32,13 @@ Don't have an API key ? Sign up in our [Webapp](https://www.app.autoenhance.ai/l
 
 Install Autoenhance.ai SDK with a simple CLI command
 
-With `npm`:
+With `pip`:
 ```bash
-npm install @autoenhance.ai/javascript
+pip install autoenhance
 ```
-With `yarn`:
+With `poetry`:
 ```bash
-yarn add @autoenhance.ai/javascript
+poetry add autoenhance
 ```
 
 ## <a id="configuration"></a>⚙️ Configuration
@@ -47,11 +47,11 @@ Follow these simple steps in order to implement and configure our SDK
 
 Import Autoenhance SDK package:
 ```bash
-import Autoenhance from '@autoenhance.ai/javascript';
+import autoenhance
 ```
 Create a constant, and add your [API key](#requirements)
 ```bash
-const autoenhance = new Autoenhance('YOUR API KEY');
+autoenhance = autoenhance.Autoenhance('YOUR API KEY');
 ```
 
 Boom, that's it! Now you can interact with our API in a matter of seconds.
@@ -60,48 +60,37 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 
 `Uploading image`
 ```bash
-  const uploadImage = async (imageProperties: ImageIn, image: Blob) => {
-    const { s3PutObjectUrl } = await autoenhance.ImagesApi.createImage({
-      imageIn: {
-        ...imageProperties
-      }
-    })
 
-    await fetch(s3PutObjectUrl, {
-      method: "PUT",
-        headers: {
-            "Content-Type": "image/jpeg",
-        },
-        body: image,
-    });
-    
-  }
+  import requests
+
+  def upload_image(image_properties: dict, image_buffer):
+
+    response = autoenhance.create_image(**image_properties)
+    requests.put(
+      response.s3PutObjectUrl,
+      headers={
+        "Content-Type": "image/jpeg",
+      },
+      body=image_buffer
+    )
 ```
 
 `Retrieving order`
 ```bash
-  const getOrder = async (orderId:string) => {
-    const order = await autoenhance.OrdersApi.retrieveOrder({ id: orderId});
-  };
+  def get_order(order_id):
+    order = autoenhance.retrieve_order(orderId)
 ```
 
 `Retrieving list of orders`
 ```bash
-  const getOrders = async () => {
-    const response = await autoenhance.OrdersApi.listOrders();
-    const orders = response.orders;
-  };
+  def get_orders():
+    response = await autoenhance.list_orders()
+    orders = response.orders
 ```
 
 `Downloading enhanced image`
 ```bash
-  const downloadImage = async (imageId) => {
-    const imageUrl =
-      await autoenhance.ImagesApi.downloadEnhancedImageRaw({
-          id: imageId,
-          size: "large",
-      }).then((res) => res.raw.url);
-      
-    return { url: imageUrl };
-  };
+  def download_image(image_id):
+    image_url = autoenhance.download_enhanced_image(image_url, size="large")
+    return image_url.url
 ```
