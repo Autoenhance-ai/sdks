@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ImageCreatedOut {
     /**
-     * The version of the AI model to use for enhancing the image.
+     * The version of the AI model to use for enhancing the image. Versions ending in an .x will use the latest minor version as soon as it's published.
      * @type {string}
      * @memberof ImageCreatedOut
      */

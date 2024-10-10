@@ -1,6 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+# TODO: Adopt same Autoenhance.create_image type structure from python
+# 
+
 import { Configuration } from './runtime' 
 import * as custom from './custom';
 import * as apis from './apis';
