@@ -1,17 +1,16 @@
 [tool.poetry]
 name = "autoenhance"
-version = "1.1.0"
+version = "1.0.1"
 description = "Autoenhance API"
-authors = ["OpenAPI Generator Community <team@openapitools.org>"]
-license = "NoLicense"
+authors = ["Autoenhance.AI <support@autoenhance.ai>"]
+license = "BSD-3-Clause"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Autoenhance API"]
+repository = "https://github.com/Autoenhance-ai/sdks"
+keywords = ["Autoenhance API"]
 include = ["autoenhance/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-
 urllib3 = ">= 1.25.3"
 python-dateutil = ">=2.8.2"
 pydantic = ">=2"

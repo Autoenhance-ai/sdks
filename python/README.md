@@ -67,7 +67,7 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 
     response = autoenhance.create_image(**image_properties)
     requests.put(
-      response.s3PutObjectUrl,
+      response.s3_put_object_url,
       headers={
         "Content-Type": "image/jpeg",
       },
