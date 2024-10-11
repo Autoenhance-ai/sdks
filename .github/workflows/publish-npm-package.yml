@@ -1,3 +1,5 @@
+name: JavaScript
+
 on:
   push:
     branches:
@@ -5,7 +7,7 @@ on:
       
 defaults:
   run:
-   working-directory: ./javascript
+   working-directory: ./javascript/package.json
 jobs:
   publish:
     name: Publish NPM Package
