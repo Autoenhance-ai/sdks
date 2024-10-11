@@ -29,6 +29,11 @@ jobs:
       - name: Install packages
         run: poetry install
 
+      - name: Build package
+        run: poetry build
+
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages_dir: ./python/dist
       
