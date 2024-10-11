@@ -72,9 +72,9 @@ class OrderBracketsOut(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in brackets (list)
         _items = []
         if self.brackets:
-            for _item_brackets in self.brackets:
-                if _item_brackets:
-                    _items.append(_item_brackets.to_dict())
+            for _item in self.brackets:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['brackets'] = _items
         return _dict
 
