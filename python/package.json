@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "autoenhance"
-version = "1.0.3"
+version = "1.1.0"
 description = "Autoenhance API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
