@@ -5,7 +5,11 @@ on:
     branches:
       - main
     paths:
-      - ./javascript/package.json
+      - javascript/package.json
+
+      # !!Remember!! to update this if you rename this file
+      #
+      - '.github/workflows/javascript.yml'
       
 defaults:
   run:
