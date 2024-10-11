@@ -7,7 +7,8 @@ defaults:
   run:
    working-directory: ./javascript
 jobs:
-  deploy:
+  publish:
+    name: Publish NPM Package
     runs-on: ubuntu-latest
 
     steps:
