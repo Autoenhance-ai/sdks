@@ -50,7 +50,7 @@ docs/ValidationError.md
 docs/ValidationErrorDetail.md
 docs/ValidationErrorDetailLocation.md
 git_push.sh
-package.json
+pyproject.toml
 pyproject.toml
 requirements.txt
 setup.cfg

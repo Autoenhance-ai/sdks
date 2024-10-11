@@ -84,7 +84,7 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 `Retrieving list of orders`
 ```bash
   def get_orders():
-    response = await autoenhance.list_orders()
+    response = autoenhance.list_orders()
     orders = response.orders
 ```
 
