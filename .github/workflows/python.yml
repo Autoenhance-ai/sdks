@@ -1,0 +1,39 @@
+name: Python
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - python/pyproject.toml
+
+      # !!Remember!! to update this if you rename this file
+      #
+      - '.github/workflows/python.yml'
+      
+defaults:
+  run:
+   working-directory: ./python/
+jobs:
+  publish:
+    name: Publish PyPI Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install packages
+        run: poetry install
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+      
