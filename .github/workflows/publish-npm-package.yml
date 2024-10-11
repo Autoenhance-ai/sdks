@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - ./javascript/package.json
       
 defaults:
   run:
-   working-directory: ./javascript/package.json
+   working-directory: ./javascript/
 jobs:
   publish:
     name: Publish NPM Package
