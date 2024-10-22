@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The creation date of the order. | [optional] 
 **images** | [**List[ImageOut]**](ImageOut.md) |  | [optional] 
+**is_deleted** | **bool** | The status of the order. | [optional] 
 **is_merging** | **bool** | The processing status for the order | [optional] 
 **is_processing** | **object** | The processing status for the order | [optional] [readonly] 
 **last_updated_at** | **datetime** | The last updated date of the order. | [optional] 

@@ -39,6 +39,12 @@ export interface OrderOut {
      */
     images?: Array<ImageOut>;
     /**
+     * The status of the order.
+     * @type {boolean}
+     * @memberof OrderOut
+     */
+    isDeleted?: boolean;
+    /**
      * The processing status for the order
      * @type {boolean}
      * @memberof OrderOut
@@ -108,6 +114,7 @@ export function OrderOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'images': json['images'] == null ? undefined : ((json['images'] as Array<any>).map(ImageOutFromJSON)),
+        'isDeleted': json['is_deleted'] == null ? undefined : json['is_deleted'],
         'isMerging': json['is_merging'] == null ? undefined : json['is_merging'],
         'isProcessing': json['is_processing'] == null ? undefined : json['is_processing'],
         'lastUpdatedAt': json['last_updated_at'] == null ? undefined : (new Date(json['last_updated_at'])),
@@ -125,6 +132,7 @@ export function OrderOutToJSON(value?: Omit<OrderOut, 'is_processing'|'status'> 
         
         'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'images': value['images'] == null ? undefined : ((value['images'] as Array<any>).map(ImageOutToJSON)),
+        'is_deleted': value['isDeleted'],
         'is_merging': value['isMerging'],
         'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
         'name': value['name'],

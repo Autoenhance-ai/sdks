@@ -30,13 +30,14 @@ class OrderOut(BaseModel):
     """ # noqa: E501
     created_at: Optional[datetime] = Field(default=None, description="The creation date of the order.")
     images: Optional[List[ImageOut]] = None
+    is_deleted: Optional[StrictBool] = Field(default=None, description="The status of the order.")
     is_merging: Optional[StrictBool] = Field(default=None, description="The processing status for the order")
     is_processing: Optional[Any] = Field(default=None, description="The processing status for the order")
     last_updated_at: Optional[datetime] = Field(default=None, description="The last updated date of the order.")
     name: Optional[StrictStr] = Field(default=None, description="The name for the order.")
     order_id: Optional[StrictStr] = Field(default=None, description="The ID for the order.")
     status: Optional[StrictStr] = Field(default=None, description="The status of the order.")
-    __properties: ClassVar[List[str]] = ["created_at", "images", "is_merging", "is_processing", "last_updated_at", "name", "order_id", "status"]
+    __properties: ClassVar[List[str]] = ["created_at", "images", "is_deleted", "is_merging", "is_processing", "last_updated_at", "name", "order_id", "status"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -117,6 +118,7 @@ class OrderOut(BaseModel):
         _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
             "images": [ImageOut.from_dict(_item) for _item in obj["images"]] if obj.get("images") is not None else None,
+            "is_deleted": obj.get("is_deleted"),
             "is_merging": obj.get("is_merging"),
             "is_processing": obj.get("is_processing"),
             "last_updated_at": obj.get("last_updated_at"),
