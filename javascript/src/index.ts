@@ -18,9 +18,6 @@ export default class Autoenhance {
             basePath: baseURL,
             middleware: [],
             apiKey: () => apiKey,
-            headers:{
-                "x-api-version" : apiVersion
-            }
         });
     }
     get ImagesApi(): custom.ImagesApi {
