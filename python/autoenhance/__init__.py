@@ -26,7 +26,7 @@ from autoenhance.models.validation_error import ValidationError
 from autoenhance.models.validation_error_detail import ValidationErrorDetail
 from autoenhance.models.validation_error_detail_location import ValidationErrorDetailLocation
 
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 __api_version__ = "2025-01-01"
 
 class Autoenhance(ApiClient, ImagesApi, OrdersApi):
