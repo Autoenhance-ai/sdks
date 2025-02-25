@@ -6,13 +6,16 @@ import * as models from './models';
 import * as apis from './apis';
 import * as runtime from './runtime';
 
-const VERSION = "1.2.19"
+const VERSION = "1.2.20"
 const API_VERSION = "2025-01-01"
 
 
 export default class Autoenhance {
-
     private configuration: Configuration;
+    private _ImagesApi: apis.ImagesApi;
+    private _OrdersApi: apis.OrdersApi;
+    
+    [key: string]: any;
 
     constructor(apiKey: string, options: { baseURL?: string } = {}) {
         const { baseURL = 'https://api.autoenhance.ai' } = options;
@@ -26,11 +29,11 @@ export default class Autoenhance {
             }
         });
 
-        const ImagesApi = new apis.ImagesApi(this.configuration);
-        this.injectApiMethods(ImagesApi)
+        this._ImagesApi = new apis.ImagesApi(this.configuration);
+        this.injectApiMethods(this._ImagesApi)
 
-        const OrdersApi = new apis.OrdersApi(this.configuration);
-        this.injectApiMethods(OrdersApi)
+        this._OrdersApi = new apis.OrdersApi(this.configuration);
+        this.injectApiMethods(this._OrdersApi)
 
     }
 
@@ -49,11 +52,11 @@ export default class Autoenhance {
     // handle backwards compatibility here.
     //
     get ImagesApi() {
-        return this;
+        return this._ImagesApi;
     }
 
     get OrdersApi() {
-        return this;
+        return this._OrdersApi;
     }
 
 
@@ -130,7 +133,7 @@ export default class Autoenhance {
             queryParameters['scale'] = requestParameters['scale'];
         }
 
-        return `{this.configuration.baseURL}/v3/images/{id}/original`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])))
+        return `${this.configuration.baseURL}/v3/images/${encodeURIComponent(String(requestParameters['id']))}/original`;
     }
 
     async uploadImage(imageProperties: models.ImageIn, image: Blob) {
