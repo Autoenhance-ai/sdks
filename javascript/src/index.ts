@@ -6,7 +6,7 @@ import * as models from './models';
 import * as apis from './apis';
 import * as runtime from './runtime';
 
-const VERSION = "1.2.21"
+const VERSION = "1.2.22"
 const API_VERSION = "2025-01-01"
 
 
@@ -133,7 +133,7 @@ export default class Autoenhance {
             queryParameters['scale'] = requestParameters['scale'];
         }
 
-        return `${this.configuration.baseURL}/v3/images/${encodeURIComponent(String(requestParameters['id']))}/original`;
+        return `${this.configuration.basePath}/v3/images/${encodeURIComponent(String(requestParameters['id']))}/original`;
     }
 
     async uploadImage(imageProperties: models.ImageIn, image: Blob) {
