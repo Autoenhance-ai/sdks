@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from autoenhance.models.image_out import ImageOut
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,18 +36,9 @@ class OrderOut(BaseModel):
     last_updated_at: Optional[datetime] = Field(default=None, description="The last updated date of the order.")
     name: Optional[StrictStr] = Field(default=None, description="The name for the order.")
     order_id: Optional[StrictStr] = Field(default=None, description="The ID for the order.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of the order.")
-    __properties: ClassVar[List[str]] = ["created_at", "images", "is_deleted", "is_merging", "is_processing", "last_updated_at", "name", "order_id", "status"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['waiting', 'processing', 'processed', 'error']):
-            raise ValueError("must be one of enum values ('waiting', 'processing', 'processed', 'error')")
-        return value
+    status: Optional[Any] = Field(default=None, description="The status of the order.")
+    total_images: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Number of images in the  order.")
+    __properties: ClassVar[List[str]] = ["created_at", "images", "is_deleted", "is_merging", "is_processing", "last_updated_at", "name", "order_id", "status", "total_images"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,14 +86,19 @@ class OrderOut(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in images (list)
         _items = []
         if self.images:
-            for _item in self.images:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_images in self.images:
+                if _item_images:
+                    _items.append(_item_images.to_dict())
             _dict['images'] = _items
         # set to None if is_processing (nullable) is None
         # and model_fields_set contains the field
         if self.is_processing is None and "is_processing" in self.model_fields_set:
             _dict['is_processing'] = None
+
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
 
         return _dict
 
@@ -124,7 +120,8 @@ class OrderOut(BaseModel):
             "last_updated_at": obj.get("last_updated_at"),
             "name": obj.get("name"),
             "order_id": obj.get("order_id"),
-            "status": obj.get("status")
+            "status": obj.get("status"),
+            "total_images": obj.get("total_images")
         })
         return _obj
 

@@ -27,7 +27,7 @@ class Pagination(BaseModel):
     Pagination
     """ # noqa: E501
     next_offset: Optional[StrictStr] = Field(default=None, description="The offset token for the next page of results or null if it is the last page. Pass this to the `offset` parameter when loading the next page.")
-    per_page: Optional[StrictInt] = Field(default=20, description="The amount of items per page of results.")
+    per_page: Optional[StrictInt] = Field(default=5, description="The amount of items per page of results.")
     __properties: ClassVar[List[str]] = ["next_offset", "per_page"]
 
     model_config = ConfigDict(
@@ -82,7 +82,7 @@ class Pagination(BaseModel):
 
         _obj = cls.model_validate({
             "next_offset": obj.get("next_offset"),
-            "per_page": obj.get("per_page") if obj.get("per_page") is not None else 20
+            "per_page": obj.get("per_page") if obj.get("per_page") is not None else 5
         })
         return _obj
 

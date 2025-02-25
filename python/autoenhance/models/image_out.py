@@ -28,77 +28,38 @@ class ImageOut(BaseModel):
     ImageOut
     """ # noqa: E501
     ai_version: Optional[StrictStr] = Field(default=None, description="The version of the AI model to use for enhancing the image. Versions ending in an .x will use the latest minor version as soon as it's published.")
-    brightness_boost: Optional[StrictStr] = Field(default=None, description="The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
-    brightness_boost_external: Optional[StrictStr] = Field(default=None, description="The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
-    brightness_boost_internal: Optional[StrictStr] = Field(default=None, description="The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
-    clarity_level: Optional[StrictStr] = Field(default=None, description="The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
     cloud_type: Optional[StrictStr] = Field(default=None, description="The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD")
-    contrast_boost: Optional[StrictStr] = Field(default=None, description="The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
-    contrast_boost_external: Optional[StrictStr] = Field(default=None, description="The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
-    contrast_boost_internal: Optional[StrictStr] = Field(default=None, description="The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
     date_added: Optional[StrictInt] = Field(default=None, description="The date the image was registered with Autoenhance.")
-    denoise_level: Optional[StrictStr] = Field(default=None, description="The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
     downloaded: Optional[StrictBool] = Field(default=None, description="Whether image has been already downloaded and paid for.")
     enhance: Optional[StrictBool] = Field(default=True, description="Whether to enhance the image.")
-    enhance_type: Optional[StrictStr] = Field(default=None, description="The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM, NEUTRAL, or AUTHENTIC.")
+    enhance_type: Optional[StrictStr] = Field(default=None, description="The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM or NEUTRAL..")
     image_id: Optional[StrictStr] = None
     image_name: Optional[StrictStr] = None
     image_type: Optional[StrictStr] = Field(default=None, description="The image type for the image.")
     is_threesixty: Optional[Any] = Field(default=None, description="Whether the image is a 360° image")
     lens_correction: Optional[StrictBool] = Field(default=True, description="Correct any lens distortion in the image.")
     metadata: Optional[Dict[str, Any]] = Field(default=None, description="Metadata for the image.")
-    order_id: Optional[StrictStr] = None
+    order_id: Optional[Any] = None
     privacy: Optional[StrictBool] = Field(default=None, description="Whether to blur any faces or license plates in the image.")
     rating: Optional[Annotated[int, Field(le=5, strict=True, ge=0)]] = Field(default=None, description="A rating between 0 and 5 on how good the image enhancmeent. Higher is better.")
-    saturation_level: Optional[StrictStr] = Field(default=None, description="The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
     scene: Optional[StrictStr] = Field(default=None, description="The detected scene of the image i.e garden, patio, kitchen, etc.")
-    sharpen_level: Optional[StrictStr] = Field(default=None, description="The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH")
     sky_replacement: Optional[StrictBool] = Field(default=None, description="Whether the sky replacement feature was enabled for the image.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of the order.")
+    status: Optional[Any] = Field(default=None, description="The status of the order.")
     status_reason: Optional[Any] = Field(default=None, description="Reason for the image's current status")
-    user_id: Optional[StrictStr] = Field(default=None, description="The user ID of the user who uploaded (owns) the image.")
+    upscale: Optional[StrictBool] = Field(default=None, description="Whether to upscale the image.")
+    user_id: Optional[Any] = Field(default=None, description="The user ID of the user who uploaded (owns) the image.")
     vertical_correction: Optional[StrictBool] = Field(default=None, description="Whether the vertical correction feature was enabled for the image.")
     window_pull: Optional[StrictBool] = Field(default=None, description="Whether to pull the windows in the image (used with AI version >= 4.0).")
-    __properties: ClassVar[List[str]] = ["ai_version", "brightness_boost", "brightness_boost_external", "brightness_boost_internal", "clarity_level", "cloud_type", "contrast_boost", "contrast_boost_external", "contrast_boost_internal", "date_added", "denoise_level", "downloaded", "enhance", "enhance_type", "image_id", "image_name", "image_type", "is_threesixty", "lens_correction", "metadata", "order_id", "privacy", "rating", "saturation_level", "scene", "sharpen_level", "sky_replacement", "status", "status_reason", "user_id", "vertical_correction", "window_pull"]
+    __properties: ClassVar[List[str]] = ["ai_version", "cloud_type", "date_added", "downloaded", "enhance", "enhance_type", "image_id", "image_name", "image_type", "is_threesixty", "lens_correction", "metadata", "order_id", "privacy", "rating", "scene", "sky_replacement", "status", "status_reason", "upscale", "user_id", "vertical_correction", "window_pull"]
 
-    @field_validator('brightness_boost')
-    def brightness_boost_validate_enum(cls, value):
+    @field_validator('ai_version')
+    def ai_version_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('brightness_boost_external')
-    def brightness_boost_external_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('brightness_boost_internal')
-    def brightness_boost_internal_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('clarity_level')
-    def clarity_level_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
+        if value not in set(['dev', '4.x', '4.7', '4.5', '4.4', '4.3', '4.2', '4.1', '4.0', '3.x', '3.5', '3.4', '3.3', '3.2', '3.1', '3.0']):
+            raise ValueError("must be one of enum values ('dev', '4.x', '4.7', '4.5', '4.4', '4.3', '4.2', '4.1', '4.0', '3.x', '3.5', '3.4', '3.3', '3.2', '3.1', '3.0')")
         return value
 
     @field_validator('cloud_type')
@@ -107,48 +68,8 @@ class ImageOut(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['CLEAR', 'LOW_CLOUD', 'HIGH_CLOUD', 'null']):
-            raise ValueError("must be one of enum values ('CLEAR', 'LOW_CLOUD', 'HIGH_CLOUD', 'null')")
-        return value
-
-    @field_validator('contrast_boost')
-    def contrast_boost_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('contrast_boost_external')
-    def contrast_boost_external_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('contrast_boost_internal')
-    def contrast_boost_internal_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('denoise_level')
-    def denoise_level_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
+        if value not in set(['CLEAR', 'LOW_CLOUD', 'HIGH_CLOUD']):
+            raise ValueError("must be one of enum values ('CLEAR', 'LOW_CLOUD', 'HIGH_CLOUD')")
         return value
 
     @field_validator('enhance_type')
@@ -157,38 +78,8 @@ class ImageOut(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['property', 'property_usa', 'warm', 'neutral', 'authentic']):
-            raise ValueError("must be one of enum values ('property', 'property_usa', 'warm', 'neutral', 'authentic')")
-        return value
-
-    @field_validator('saturation_level')
-    def saturation_level_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('sharpen_level')
-    def sharpen_level_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'null']):
-            raise ValueError("must be one of enum values ('NONE', 'LOW', 'MEDIUM', 'HIGH', 'null')")
-        return value
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['waiting', 'processing', 'processed', 'error', 'expired']):
-            raise ValueError("must be one of enum values ('waiting', 'processing', 'processed', 'error', 'expired')")
+        if value not in set(['property', 'property_usa', 'warm', 'neutral']):
+            raise ValueError("must be one of enum values ('property', 'property_usa', 'warm', 'neutral')")
         return value
 
     model_config = ConfigDict(
@@ -224,11 +115,15 @@ class ImageOut(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "is_threesixty",
+            "order_id",
             "status",
             "status_reason",
+            "user_id",
         ])
 
         _dict = self.model_dump(
@@ -236,75 +131,40 @@ class ImageOut(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if brightness_boost (nullable) is None
-        # and model_fields_set contains the field
-        if self.brightness_boost is None and "brightness_boost" in self.model_fields_set:
-            _dict['brightness_boost'] = None
-
-        # set to None if brightness_boost_external (nullable) is None
-        # and model_fields_set contains the field
-        if self.brightness_boost_external is None and "brightness_boost_external" in self.model_fields_set:
-            _dict['brightness_boost_external'] = None
-
-        # set to None if brightness_boost_internal (nullable) is None
-        # and model_fields_set contains the field
-        if self.brightness_boost_internal is None and "brightness_boost_internal" in self.model_fields_set:
-            _dict['brightness_boost_internal'] = None
-
-        # set to None if clarity_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.clarity_level is None and "clarity_level" in self.model_fields_set:
-            _dict['clarity_level'] = None
-
         # set to None if cloud_type (nullable) is None
         # and model_fields_set contains the field
         if self.cloud_type is None and "cloud_type" in self.model_fields_set:
             _dict['cloud_type'] = None
-
-        # set to None if contrast_boost (nullable) is None
-        # and model_fields_set contains the field
-        if self.contrast_boost is None and "contrast_boost" in self.model_fields_set:
-            _dict['contrast_boost'] = None
-
-        # set to None if contrast_boost_external (nullable) is None
-        # and model_fields_set contains the field
-        if self.contrast_boost_external is None and "contrast_boost_external" in self.model_fields_set:
-            _dict['contrast_boost_external'] = None
-
-        # set to None if contrast_boost_internal (nullable) is None
-        # and model_fields_set contains the field
-        if self.contrast_boost_internal is None and "contrast_boost_internal" in self.model_fields_set:
-            _dict['contrast_boost_internal'] = None
-
-        # set to None if denoise_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.denoise_level is None and "denoise_level" in self.model_fields_set:
-            _dict['denoise_level'] = None
 
         # set to None if is_threesixty (nullable) is None
         # and model_fields_set contains the field
         if self.is_threesixty is None and "is_threesixty" in self.model_fields_set:
             _dict['is_threesixty'] = None
 
+        # set to None if order_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.order_id is None and "order_id" in self.model_fields_set:
+            _dict['order_id'] = None
+
         # set to None if privacy (nullable) is None
         # and model_fields_set contains the field
         if self.privacy is None and "privacy" in self.model_fields_set:
             _dict['privacy'] = None
 
-        # set to None if saturation_level (nullable) is None
+        # set to None if status (nullable) is None
         # and model_fields_set contains the field
-        if self.saturation_level is None and "saturation_level" in self.model_fields_set:
-            _dict['saturation_level'] = None
-
-        # set to None if sharpen_level (nullable) is None
-        # and model_fields_set contains the field
-        if self.sharpen_level is None and "sharpen_level" in self.model_fields_set:
-            _dict['sharpen_level'] = None
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
 
         # set to None if status_reason (nullable) is None
         # and model_fields_set contains the field
         if self.status_reason is None and "status_reason" in self.model_fields_set:
             _dict['status_reason'] = None
+
+        # set to None if user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_id is None and "user_id" in self.model_fields_set:
+            _dict['user_id'] = None
 
         # set to None if window_pull (nullable) is None
         # and model_fields_set contains the field
@@ -324,16 +184,8 @@ class ImageOut(BaseModel):
 
         _obj = cls.model_validate({
             "ai_version": obj.get("ai_version"),
-            "brightness_boost": obj.get("brightness_boost"),
-            "brightness_boost_external": obj.get("brightness_boost_external"),
-            "brightness_boost_internal": obj.get("brightness_boost_internal"),
-            "clarity_level": obj.get("clarity_level"),
             "cloud_type": obj.get("cloud_type"),
-            "contrast_boost": obj.get("contrast_boost"),
-            "contrast_boost_external": obj.get("contrast_boost_external"),
-            "contrast_boost_internal": obj.get("contrast_boost_internal"),
             "date_added": obj.get("date_added"),
-            "denoise_level": obj.get("denoise_level"),
             "downloaded": obj.get("downloaded"),
             "enhance": obj.get("enhance") if obj.get("enhance") is not None else True,
             "enhance_type": obj.get("enhance_type"),
@@ -346,12 +198,11 @@ class ImageOut(BaseModel):
             "order_id": obj.get("order_id"),
             "privacy": obj.get("privacy"),
             "rating": obj.get("rating"),
-            "saturation_level": obj.get("saturation_level"),
             "scene": obj.get("scene"),
-            "sharpen_level": obj.get("sharpen_level"),
             "sky_replacement": obj.get("sky_replacement"),
             "status": obj.get("status"),
             "status_reason": obj.get("status_reason"),
+            "upscale": obj.get("upscale"),
             "user_id": obj.get("user_id"),
             "vertical_correction": obj.get("vertical_correction"),
             "window_pull": obj.get("window_pull")

@@ -16,8 +16,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBytes, StrictStr, field_validator
-from typing import Any, Optional, Union
+from pydantic import Field, StrictBool, StrictBytes, StrictStr, field_validator
+from typing import Any, Optional, Tuple, Union
+from typing_extensions import Annotated
 from autoenhance.models.image_created_out import ImageCreatedOut
 from autoenhance.models.image_in import ImageIn
 from autoenhance.models.image_in_update import ImageInUpdate
@@ -260,7 +261,9 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -535,7 +538,9 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -583,7 +588,12 @@ class ImagesApi:
     def download_enhanced_image(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -602,8 +612,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -628,7 +648,12 @@ class ImagesApi:
 
         _param = self._download_enhanced_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -656,7 +681,12 @@ class ImagesApi:
     def download_enhanced_image_with_http_info(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -675,8 +705,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -701,7 +741,12 @@ class ImagesApi:
 
         _param = self._download_enhanced_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -729,7 +774,12 @@ class ImagesApi:
     def download_enhanced_image_without_preload_content(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -748,8 +798,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -774,7 +834,12 @@ class ImagesApi:
 
         _param = self._download_enhanced_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -797,7 +862,12 @@ class ImagesApi:
     def _download_enhanced_image_serialize(
         self,
         id,
-        size,
+        quality,
+        format,
+        preview,
+        watermark,
+        max_width,
+        scale,
         _request_auth,
         _content_type,
         _headers,
@@ -813,16 +883,38 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if size is not None:
+        if quality is not None:
             
-            _query_params.append(('size', size))
+            _query_params.append(('quality', quality))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format))
+            
+        if preview is not None:
+            
+            _query_params.append(('preview', preview))
+            
+        if watermark is not None:
+            
+            _query_params.append(('watermark', watermark))
+            
+        if max_width is not None:
+            
+            _query_params.append(('max_width', max_width))
+            
+        if scale is not None:
+            
+            _query_params.append(('scale', scale))
             
         # process the header parameters
         # process the form parameters
@@ -866,7 +958,12 @@ class ImagesApi:
     def download_original_image(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -885,8 +982,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -911,7 +1018,12 @@ class ImagesApi:
 
         _param = self._download_original_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -920,6 +1032,7 @@ class ImagesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
+            '401': "HTTPError",
             '404': "HTTPError",
             '422': "ValidationError",
         }
@@ -938,7 +1051,12 @@ class ImagesApi:
     def download_original_image_with_http_info(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -957,8 +1075,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -983,7 +1111,12 @@ class ImagesApi:
 
         _param = self._download_original_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -992,6 +1125,7 @@ class ImagesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
+            '401': "HTTPError",
             '404': "HTTPError",
             '422': "ValidationError",
         }
@@ -1010,7 +1144,12 @@ class ImagesApi:
     def download_original_image_without_preload_content(
         self,
         id: StrictStr,
-        size: Optional[StrictStr] = None,
+        quality: Annotated[Optional[Annotated[int, Field(le=90, strict=True, ge=1)]], Field(description="Quality of the image, must be between 1 and 90.")] = None,
+        format: Annotated[Optional[StrictStr], Field(description="Format of the image, must be one of 'png', 'jpeg', or 'webp'.")] = None,
+        preview: Annotated[Optional[StrictBool], Field(description="Whether to show a lower quality preview version.")] = None,
+        watermark: Annotated[Optional[StrictBool], Field(description="Whether to apply a watermark to the image.")] = None,
+        max_width: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Maximum width of the image in pixels. Must be a positive integer.")] = None,
+        scale: Annotated[Optional[Union[Annotated[float, Field(le=1.0, strict=True, ge=0.0)], Annotated[int, Field(le=1, strict=True, ge=0)]]], Field(description="Scale factor for the image, must be between 0.0 and 1.0.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1029,8 +1168,18 @@ class ImagesApi:
 
         :param id: (required)
         :type id: str
-        :param size:
-        :type size: str
+        :param quality: Quality of the image, must be between 1 and 90.
+        :type quality: int
+        :param format: Format of the image, must be one of 'png', 'jpeg', or 'webp'.
+        :type format: str
+        :param preview: Whether to show a lower quality preview version.
+        :type preview: bool
+        :param watermark: Whether to apply a watermark to the image.
+        :type watermark: bool
+        :param max_width: Maximum width of the image in pixels. Must be a positive integer.
+        :type max_width: int
+        :param scale: Scale factor for the image, must be between 0.0 and 1.0.
+        :type scale: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1055,7 +1204,12 @@ class ImagesApi:
 
         _param = self._download_original_image_serialize(
             id=id,
-            size=size,
+            quality=quality,
+            format=format,
+            preview=preview,
+            watermark=watermark,
+            max_width=max_width,
+            scale=scale,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1064,6 +1218,7 @@ class ImagesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
+            '401': "HTTPError",
             '404': "HTTPError",
             '422': "ValidationError",
         }
@@ -1077,7 +1232,12 @@ class ImagesApi:
     def _download_original_image_serialize(
         self,
         id,
-        size,
+        quality,
+        format,
+        preview,
+        watermark,
+        max_width,
+        scale,
         _request_auth,
         _content_type,
         _headers,
@@ -1093,16 +1253,38 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if size is not None:
+        if quality is not None:
             
-            _query_params.append(('size', size))
+            _query_params.append(('quality', quality))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format))
+            
+        if preview is not None:
+            
+            _query_params.append(('preview', preview))
+            
+        if watermark is not None:
+            
+            _query_params.append(('watermark', watermark))
+            
+        if max_width is not None:
+            
+            _query_params.append(('max_width', max_width))
+            
+        if scale is not None:
+            
+            _query_params.append(('scale', scale))
             
         # process the header parameters
         # process the form parameters
@@ -1121,529 +1303,12 @@ class ImagesApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'ApiKeyAuth'
         ]
 
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v3/images/{id}/original',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def download_preview_image(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
-        """Download Preview Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_preview_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def download_preview_image_with_http_info(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
-        """Download Preview Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_preview_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def download_preview_image_without_preload_content(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Download Preview Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_preview_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _download_preview_image_serialize(
-        self,
-        id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'image/jpeg', 
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/v3/images/{id}/preview',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def download_watermark_image(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
-        """Download Watermark Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_watermark_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def download_watermark_image_with_http_info(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
-        """Download Watermark Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_watermark_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def download_watermark_image_without_preload_content(
-        self,
-        id: StrictStr,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Download Watermark Image
-
-
-        :param id: (required)
-        :type id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._download_watermark_image_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
-            '404': "HTTPError",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _download_watermark_image_serialize(
-        self,
-        id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'image/jpeg', 
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/v3/images/{id}/watermark',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1893,7 +1558,9 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2167,7 +1834,9 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2444,7 +2113,9 @@ class ImagesApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters

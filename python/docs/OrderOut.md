@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **last_updated_at** | **datetime** | The last updated date of the order. | [optional] 
 **name** | **str** | The name for the order. | [optional] 
 **order_id** | **str** | The ID for the order. | [optional] 
-**status** | **str** | The status of the order. | [optional] [readonly] 
+**status** | **object** | The status of the order. | [optional] [readonly] 
+**total_images** | **float** | Number of images in the  order. | [optional] 
 
 ## Example
 

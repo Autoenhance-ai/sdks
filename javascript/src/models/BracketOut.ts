@@ -55,10 +55,15 @@ export function BracketOutFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function BracketOutToJSON(value?: BracketOut | null): any {
+export function BracketOutToJSON(json: any): BracketOut {
+    return BracketOutToJSONTyped(json, false);
+}
+
+export function BracketOutToJSONTyped(value?: BracketOut | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'is_uploaded': value['isUploaded'],

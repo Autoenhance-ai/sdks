@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://api.autoenhance.ai".replace(/\/+$/, "");
+export const BASE_PATH = "https://dev.api.autoenhance.ai".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
@@ -335,6 +335,11 @@ function querystringSingleKey(key: string, value: string | number | null | undef
         return querystring(value as HTTPQuery, fullKey);
     }
     return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
+}
+
+export function exists(json: any, key: string) {
+    const value = json[key];
+    return value !== null && value !== undefined;
 }
 
 export function mapValues(data: any, fn: (item: any) => any) {

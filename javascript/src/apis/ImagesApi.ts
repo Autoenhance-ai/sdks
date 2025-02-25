@@ -50,20 +50,22 @@ export interface DeleteImageRequest {
 
 export interface DownloadEnhancedImageRequest {
     id: string;
-    size?: DownloadEnhancedImageSizeEnum;
+    quality?: number;
+    format?: DownloadEnhancedImageFormatEnum;
+    preview?: boolean;
+    watermark?: boolean;
+    maxWidth?: number;
+    scale?: number;
 }
 
 export interface DownloadOriginalImageRequest {
     id: string;
-    size?: DownloadOriginalImageSizeEnum;
-}
-
-export interface DownloadPreviewImageRequest {
-    id: string;
-}
-
-export interface DownloadWatermarkImageRequest {
-    id: string;
+    quality?: number;
+    format?: DownloadOriginalImageFormatEnum;
+    preview?: boolean;
+    watermark?: boolean;
+    maxWidth?: number;
+    scale?: number;
 }
 
 export interface ReportImageRequest {
@@ -167,8 +169,28 @@ export class ImagesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters['size'] != null) {
-            queryParameters['size'] = requestParameters['size'];
+        if (requestParameters['quality'] != null) {
+            queryParameters['quality'] = requestParameters['quality'];
+        }
+
+        if (requestParameters['format'] != null) {
+            queryParameters['format'] = requestParameters['format'];
+        }
+
+        if (requestParameters['preview'] != null) {
+            queryParameters['preview'] = requestParameters['preview'];
+        }
+
+        if (requestParameters['watermark'] != null) {
+            queryParameters['watermark'] = requestParameters['watermark'];
+        }
+
+        if (requestParameters['maxWidth'] != null) {
+            queryParameters['max_width'] = requestParameters['maxWidth'];
+        }
+
+        if (requestParameters['scale'] != null) {
+            queryParameters['scale'] = requestParameters['scale'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -208,11 +230,35 @@ export class ImagesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters['size'] != null) {
-            queryParameters['size'] = requestParameters['size'];
+        if (requestParameters['quality'] != null) {
+            queryParameters['quality'] = requestParameters['quality'];
+        }
+
+        if (requestParameters['format'] != null) {
+            queryParameters['format'] = requestParameters['format'];
+        }
+
+        if (requestParameters['preview'] != null) {
+            queryParameters['preview'] = requestParameters['preview'];
+        }
+
+        if (requestParameters['watermark'] != null) {
+            queryParameters['watermark'] = requestParameters['watermark'];
+        }
+
+        if (requestParameters['maxWidth'] != null) {
+            queryParameters['max_width'] = requestParameters['maxWidth'];
+        }
+
+        if (requestParameters['scale'] != null) {
+            queryParameters['scale'] = requestParameters['scale'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-api-key"] = await this.configuration.apiKey("x-api-key"); // ApiKeyAuth authentication
+        }
 
         const response = await this.request({
             path: `/v3/images/{id}/original`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
@@ -229,72 +275,6 @@ export class ImagesApi extends runtime.BaseAPI {
      */
     async downloadOriginalImage(requestParameters: DownloadOriginalImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.downloadOriginalImageRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Download Preview Image
-     */
-    async downloadPreviewImageRaw(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling downloadPreviewImage().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/v3/images/{id}/preview`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.BlobApiResponse(response);
-    }
-
-    /**
-     * Download Preview Image
-     */
-    async downloadPreviewImage(requestParameters: DownloadPreviewImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
-        const response = await this.downloadPreviewImageRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Download Watermark Image
-     */
-    async downloadWatermarkImageRaw(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling downloadWatermarkImage().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/v3/images/{id}/watermark`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.BlobApiResponse(response);
-    }
-
-    /**
-     * Download Watermark Image
-     */
-    async downloadWatermarkImage(requestParameters: DownloadWatermarkImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
-        const response = await this.downloadWatermarkImageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -420,18 +400,18 @@ export class ImagesApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const DownloadEnhancedImageSizeEnum = {
-    Small: 'small',
-    Large: 'large',
-    Big: 'big'
+export const DownloadEnhancedImageFormatEnum = {
+    Png: 'png',
+    Jpeg: 'jpeg',
+    Webp: 'webp'
 } as const;
-export type DownloadEnhancedImageSizeEnum = typeof DownloadEnhancedImageSizeEnum[keyof typeof DownloadEnhancedImageSizeEnum];
+export type DownloadEnhancedImageFormatEnum = typeof DownloadEnhancedImageFormatEnum[keyof typeof DownloadEnhancedImageFormatEnum];
 /**
  * @export
  */
-export const DownloadOriginalImageSizeEnum = {
-    Small: 'small',
-    Large: 'large',
-    Big: 'big'
+export const DownloadOriginalImageFormatEnum = {
+    Png: 'png',
+    Jpeg: 'jpeg',
+    Webp: 'webp'
 } as const;
-export type DownloadOriginalImageSizeEnum = typeof DownloadOriginalImageSizeEnum[keyof typeof DownloadOriginalImageSizeEnum];
+export type DownloadOriginalImageFormatEnum = typeof DownloadOriginalImageFormatEnum[keyof typeof DownloadOriginalImageFormatEnum];

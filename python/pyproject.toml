@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "autoenhance"
-version = "1.0.3"
+version = "1.0.4"
 description = "Autoenhance API"
 authors = ["Autoenhance.AI <support@autoenhance.ai>"]
 license = "BSD-3-Clause"

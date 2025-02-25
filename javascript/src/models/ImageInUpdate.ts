@@ -24,31 +24,7 @@ export interface ImageInUpdate {
      * @type {string}
      * @memberof ImageInUpdate
      */
-    aiVersion?: string;
-    /**
-     * The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    brightnessBoost?: ImageInUpdateBrightnessBoostEnum | null;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    brightnessBoostExternal?: ImageInUpdateBrightnessBoostExternalEnum | null;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    brightnessBoostInternal?: ImageInUpdateBrightnessBoostInternalEnum | null;
-    /**
-     * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    clarityLevel?: ImageInUpdateClarityLevelEnum | null;
+    aiVersion?: ImageInUpdateAiVersionEnum;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
@@ -62,37 +38,13 @@ export interface ImageInUpdate {
      */
     contentType?: string;
     /**
-     * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    contrastBoost?: ImageInUpdateContrastBoostEnum | null;
-    /**
-     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    contrastBoostExternal?: ImageInUpdateContrastBoostExternalEnum | null;
-    /**
-     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    contrastBoostInternal?: ImageInUpdateContrastBoostInternalEnum | null;
-    /**
-     * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    denoiseLevel?: ImageInUpdateDenoiseLevelEnum | null;
-    /**
      * Whether to enhance the image.
      * @type {boolean}
      * @memberof ImageInUpdate
      */
     enhance?: boolean;
     /**
-     * The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM, NEUTRAL, or AUTHENTIC.
+     * The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM or NEUTRAL..
      * @type {string}
      * @memberof ImageInUpdate
      */
@@ -134,18 +86,6 @@ export interface ImageInUpdate {
      */
     rating?: number;
     /**
-     * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    saturationLevel?: ImageInUpdateSaturationLevelEnum | null;
-    /**
-     * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof ImageInUpdate
-     */
-    sharpenLevel?: ImageInUpdateSharpenLevelEnum | null;
-    /**
      * Enable the replacement of the original sky for a summer sky.
      * @type {boolean}
      * @memberof ImageInUpdate
@@ -157,6 +97,12 @@ export interface ImageInUpdate {
      * @memberof ImageInUpdate
      */
     threesixty?: boolean;
+    /**
+     * Whether to upscale the image.
+     * @type {boolean}
+     * @memberof ImageInUpdate
+     */
+    upscale?: boolean;
     /**
      * Correct any vertical distortion in the image so that it appears straight.
      * @type {boolean}
@@ -175,50 +121,25 @@ export interface ImageInUpdate {
 /**
  * @export
  */
-export const ImageInUpdateBrightnessBoostEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
+export const ImageInUpdateAiVersionEnum = {
+    Dev: 'dev',
+    _4X: '4.x',
+    _47: '4.7',
+    _45: '4.5',
+    _44: '4.4',
+    _43: '4.3',
+    _42: '4.2',
+    _41: '4.1',
+    _40: '4.0',
+    _3X: '3.x',
+    _35: '3.5',
+    _34: '3.4',
+    _33: '3.3',
+    _32: '3.2',
+    _31: '3.1',
+    _30: '3.0'
 } as const;
-export type ImageInUpdateBrightnessBoostEnum = typeof ImageInUpdateBrightnessBoostEnum[keyof typeof ImageInUpdateBrightnessBoostEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateBrightnessBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateBrightnessBoostExternalEnum = typeof ImageInUpdateBrightnessBoostExternalEnum[keyof typeof ImageInUpdateBrightnessBoostExternalEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateBrightnessBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateBrightnessBoostInternalEnum = typeof ImageInUpdateBrightnessBoostInternalEnum[keyof typeof ImageInUpdateBrightnessBoostInternalEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateClarityLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateClarityLevelEnum = typeof ImageInUpdateClarityLevelEnum[keyof typeof ImageInUpdateClarityLevelEnum];
+export type ImageInUpdateAiVersionEnum = typeof ImageInUpdateAiVersionEnum[keyof typeof ImageInUpdateAiVersionEnum];
 
 /**
  * @export
@@ -226,58 +147,9 @@ export type ImageInUpdateClarityLevelEnum = typeof ImageInUpdateClarityLevelEnum
 export const ImageInUpdateCloudTypeEnum = {
     Clear: 'CLEAR',
     LowCloud: 'LOW_CLOUD',
-    HighCloud: 'HIGH_CLOUD',
-    Null: 'null'
+    HighCloud: 'HIGH_CLOUD'
 } as const;
 export type ImageInUpdateCloudTypeEnum = typeof ImageInUpdateCloudTypeEnum[keyof typeof ImageInUpdateCloudTypeEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateContrastBoostEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateContrastBoostEnum = typeof ImageInUpdateContrastBoostEnum[keyof typeof ImageInUpdateContrastBoostEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateContrastBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateContrastBoostExternalEnum = typeof ImageInUpdateContrastBoostExternalEnum[keyof typeof ImageInUpdateContrastBoostExternalEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateContrastBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateContrastBoostInternalEnum = typeof ImageInUpdateContrastBoostInternalEnum[keyof typeof ImageInUpdateContrastBoostInternalEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateDenoiseLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateDenoiseLevelEnum = typeof ImageInUpdateDenoiseLevelEnum[keyof typeof ImageInUpdateDenoiseLevelEnum];
 
 /**
  * @export
@@ -286,34 +158,9 @@ export const ImageInUpdateEnhanceTypeEnum = {
     Property: 'property',
     PropertyUsa: 'property_usa',
     Warm: 'warm',
-    Neutral: 'neutral',
-    Authentic: 'authentic'
+    Neutral: 'neutral'
 } as const;
 export type ImageInUpdateEnhanceTypeEnum = typeof ImageInUpdateEnhanceTypeEnum[keyof typeof ImageInUpdateEnhanceTypeEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateSaturationLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateSaturationLevelEnum = typeof ImageInUpdateSaturationLevelEnum[keyof typeof ImageInUpdateSaturationLevelEnum];
-
-/**
- * @export
- */
-export const ImageInUpdateSharpenLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type ImageInUpdateSharpenLevelEnum = typeof ImageInUpdateSharpenLevelEnum[keyof typeof ImageInUpdateSharpenLevelEnum];
 
 
 /**
@@ -334,16 +181,8 @@ export function ImageInUpdateFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'aiVersion': json['ai_version'] == null ? undefined : json['ai_version'],
-        'brightnessBoost': json['brightness_boost'] == null ? undefined : json['brightness_boost'],
-        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
-        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
-        'clarityLevel': json['clarity_level'] == null ? undefined : json['clarity_level'],
         'cloudType': json['cloud_type'] == null ? undefined : json['cloud_type'],
         'contentType': json['content_type'] == null ? undefined : json['content_type'],
-        'contrastBoost': json['contrast_boost'] == null ? undefined : json['contrast_boost'],
-        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
-        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
-        'denoiseLevel': json['denoise_level'] == null ? undefined : json['denoise_level'],
         'enhance': json['enhance'] == null ? undefined : json['enhance'],
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
         'hdr': json['hdr'] == null ? undefined : json['hdr'],
@@ -352,32 +191,28 @@ export function ImageInUpdateFromJSONTyped(json: any, ignoreDiscriminator: boole
         'orderId': json['order_id'] == null ? undefined : json['order_id'],
         'privacy': json['privacy'] == null ? undefined : json['privacy'],
         'rating': json['rating'] == null ? undefined : json['rating'],
-        'saturationLevel': json['saturation_level'] == null ? undefined : json['saturation_level'],
-        'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
         'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
         'threesixty': json['threesixty'] == null ? undefined : json['threesixty'],
+        'upscale': json['upscale'] == null ? undefined : json['upscale'],
         'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
         'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
     };
 }
 
-export function ImageInUpdateToJSON(value?: ImageInUpdate | null): any {
+export function ImageInUpdateToJSON(json: any): ImageInUpdate {
+    return ImageInUpdateToJSONTyped(json, false);
+}
+
+export function ImageInUpdateToJSONTyped(value?: ImageInUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'ai_version': value['aiVersion'],
-        'brightness_boost': value['brightnessBoost'],
-        'brightness_boost_external': value['brightnessBoostExternal'],
-        'brightness_boost_internal': value['brightnessBoostInternal'],
-        'clarity_level': value['clarityLevel'],
         'cloud_type': value['cloudType'],
         'content_type': value['contentType'],
-        'contrast_boost': value['contrastBoost'],
-        'contrast_boost_external': value['contrastBoostExternal'],
-        'contrast_boost_internal': value['contrastBoostInternal'],
-        'denoise_level': value['denoiseLevel'],
         'enhance': value['enhance'],
         'enhance_type': value['enhanceType'],
         'hdr': value['hdr'],
@@ -386,10 +221,9 @@ export function ImageInUpdateToJSON(value?: ImageInUpdate | null): any {
         'order_id': value['orderId'],
         'privacy': value['privacy'],
         'rating': value['rating'],
-        'saturation_level': value['saturationLevel'],
-        'sharpen_level': value['sharpenLevel'],
         'sky_replacement': value['skyReplacement'],
         'threesixty': value['threesixty'],
+        'upscale': value['upscale'],
         'vertical_correction': value['verticalCorrection'],
         'window_pull': value['windowPull'],
     };

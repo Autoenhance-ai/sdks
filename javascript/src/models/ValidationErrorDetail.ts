@@ -18,6 +18,7 @@ import {
     ValidationErrorDetailLocationFromJSON,
     ValidationErrorDetailLocationFromJSONTyped,
     ValidationErrorDetailLocationToJSON,
+    ValidationErrorDetailLocationToJSONTyped,
 } from './ValidationErrorDetailLocation';
 
 /**
@@ -55,10 +56,15 @@ export function ValidationErrorDetailFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function ValidationErrorDetailToJSON(value?: ValidationErrorDetail | null): any {
+export function ValidationErrorDetailToJSON(json: any): ValidationErrorDetail {
+    return ValidationErrorDetailToJSONTyped(json, false);
+}
+
+export function ValidationErrorDetailToJSONTyped(value?: ValidationErrorDetail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         '&lt;location&gt;': ValidationErrorDetailLocationToJSON(value['location']),

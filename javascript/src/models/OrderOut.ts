@@ -18,6 +18,7 @@ import {
     ImageOutFromJSON,
     ImageOutFromJSONTyped,
     ImageOutToJSON,
+    ImageOutToJSONTyped,
 } from './ImageOut';
 
 /**
@@ -76,24 +77,17 @@ export interface OrderOut {
     orderId?: string;
     /**
      * The status of the order.
-     * @type {string}
+     * @type {any}
      * @memberof OrderOut
      */
-    readonly status?: OrderOutStatusEnum;
+    readonly status?: any | null;
+    /**
+     * Number of images in the  order.
+     * @type {number}
+     * @memberof OrderOut
+     */
+    totalImages?: number;
 }
-
-
-/**
- * @export
- */
-export const OrderOutStatusEnum = {
-    Waiting: 'waiting',
-    Processing: 'processing',
-    Processed: 'processed',
-    Error: 'error'
-} as const;
-export type OrderOutStatusEnum = typeof OrderOutStatusEnum[keyof typeof OrderOutStatusEnum];
-
 
 /**
  * Check if a given object implements the OrderOut interface.
@@ -121,13 +115,19 @@ export function OrderOutFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'name': json['name'] == null ? undefined : json['name'],
         'orderId': json['order_id'] == null ? undefined : json['order_id'],
         'status': json['status'] == null ? undefined : json['status'],
+        'totalImages': json['total_images'] == null ? undefined : json['total_images'],
     };
 }
 
-export function OrderOutToJSON(value?: Omit<OrderOut, 'is_processing'|'status'> | null): any {
+export function OrderOutToJSON(json: any): OrderOut {
+    return OrderOutToJSONTyped(json, false);
+}
+
+export function OrderOutToJSONTyped(value?: Omit<OrderOut, 'is_processing'|'status'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
@@ -137,6 +137,7 @@ export function OrderOutToJSON(value?: Omit<OrderOut, 'is_processing'|'status'> 
         'last_updated_at': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
         'name': value['name'],
         'order_id': value['orderId'],
+        'total_images': value['totalImages'],
     };
 }
 

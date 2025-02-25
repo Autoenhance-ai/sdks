@@ -18,12 +18,14 @@ import {
     PaginationFromJSON,
     PaginationFromJSONTyped,
     PaginationToJSON,
+    PaginationToJSONTyped,
 } from './Pagination';
 import type { OrderOut } from './OrderOut';
 import {
     OrderOutFromJSON,
     OrderOutFromJSONTyped,
     OrderOutToJSON,
+    OrderOutToJSONTyped,
 } from './OrderOut';
 
 /**
@@ -68,10 +70,15 @@ export function OrdersOutFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function OrdersOutToJSON(value?: OrdersOut | null): any {
+export function OrdersOutToJSON(json: any): OrdersOut {
+    return OrdersOutToJSONTyped(json, false);
+}
+
+export function OrdersOutToJSONTyped(value?: OrdersOut | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'orders': value['orders'] == null ? undefined : ((value['orders'] as Array<any>).map(OrderOutToJSON)),

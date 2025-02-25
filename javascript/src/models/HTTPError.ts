@@ -55,10 +55,15 @@ export function HTTPErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function HTTPErrorToJSON(value?: HTTPError | null): any {
+export function HTTPErrorToJSON(json: any): HTTPError {
+    return HTTPErrorToJSONTyped(json, false);
+}
+
+export function HTTPErrorToJSONTyped(value?: HTTPError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'detail': value['detail'],

@@ -61,7 +61,7 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 `Uploading image`
 ```bash
   const uploadImage = async (imageProperties: ImageIn, image: Blob) => {
-    const { s3PutObjectUrl } = await autoenhance.ImagesApi.createImage({
+    const { s3PutObjectUrl } = await autoenhance.createImage({
       imageIn: {
         ...imageProperties
       }
@@ -81,14 +81,14 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 `Retrieving order`
 ```bash
   const getOrder = async (orderId:string) => {
-    const order = await autoenhance.OrdersApi.retreiveOrder({ id: orderId});
+    const order = await autoenhance.retrieveOrder({ id: orderId});
   };
 ```
 
 `Retrieving list of orders`
 ```bash
   const getOrders = async () => {
-    const response = await autoenhance.OrdersApi.listOrders();
+    const response = await autoenhance.listOrders();
     const orders = response.orders;
   };
 ```
@@ -97,7 +97,7 @@ Boom, that's it! Now you can interact with our API in a matter of seconds.
 ```bash
   const downloadImage = async (imageId) => {
     const imageUrl =
-      await autoenhance.ImagesApi.downloadEnhancedImageRaw({
+      await autoenhance.downloadEnhancedImageRaw({
           id: imageId,
           size: "large",
       }).then((res) => res.raw.url);

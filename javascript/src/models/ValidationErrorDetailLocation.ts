@@ -48,10 +48,15 @@ export function ValidationErrorDetailLocationFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function ValidationErrorDetailLocationToJSON(value?: ValidationErrorDetailLocation | null): any {
+export function ValidationErrorDetailLocationToJSON(json: any): ValidationErrorDetailLocation {
+    return ValidationErrorDetailLocationToJSONTyped(json, false);
+}
+
+export function ValidationErrorDetailLocationToJSONTyped(value?: ValidationErrorDetailLocation | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         '&lt;field_name&gt;': value['fieldName'],

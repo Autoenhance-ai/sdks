@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **next_offset** | **str** | The offset token for the next page of results or null if it is the last page. Pass this to the &#x60;offset&#x60; parameter when loading the next page. | [optional] 
-**per_page** | **int** | The amount of items per page of results. | [optional] [default to 20]
+**per_page** | **int** | The amount of items per page of results. | [optional] [default to 5]
 
 ## Example
 

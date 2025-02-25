@@ -261,7 +261,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -539,7 +541,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -587,7 +591,7 @@ class OrdersApi:
     def list_orders(
         self,
         offset: Annotated[Optional[StrictStr], Field(description="The offset token used to indicate which page of results to use.")] = None,
-        per_page: Annotated[Optional[Annotated[int, Field(le=30, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
+        per_page: Annotated[Optional[Annotated[int, Field(le=15, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -660,7 +664,7 @@ class OrdersApi:
     def list_orders_with_http_info(
         self,
         offset: Annotated[Optional[StrictStr], Field(description="The offset token used to indicate which page of results to use.")] = None,
-        per_page: Annotated[Optional[Annotated[int, Field(le=30, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
+        per_page: Annotated[Optional[Annotated[int, Field(le=15, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -733,7 +737,7 @@ class OrdersApi:
     def list_orders_without_preload_content(
         self,
         offset: Annotated[Optional[StrictStr], Field(description="The offset token used to indicate which page of results to use.")] = None,
-        per_page: Annotated[Optional[Annotated[int, Field(le=30, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
+        per_page: Annotated[Optional[Annotated[int, Field(le=15, strict=True)]], Field(description="The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -817,7 +821,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1104,7 +1110,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1381,7 +1389,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1661,7 +1671,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1938,7 +1950,9 @@ class OrdersApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters

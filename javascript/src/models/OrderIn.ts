@@ -55,10 +55,15 @@ export function OrderInFromJSONTyped(json: any, ignoreDiscriminator: boolean): O
     };
 }
 
-export function OrderInToJSON(value?: OrderIn | null): any {
+export function OrderInToJSON(json: any): OrderIn {
+    return OrderInToJSONTyped(json, false);
+}
+
+export function OrderInToJSONTyped(value?: OrderIn | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'name': value['name'],

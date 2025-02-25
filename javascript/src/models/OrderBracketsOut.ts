@@ -18,6 +18,7 @@ import {
     BracketOutFromJSON,
     BracketOutFromJSONTyped,
     BracketOutToJSON,
+    BracketOutToJSONTyped,
 } from './BracketOut';
 
 /**
@@ -55,10 +56,15 @@ export function OrderBracketsOutFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function OrderBracketsOutToJSON(value?: OrderBracketsOut | null): any {
+export function OrderBracketsOutToJSON(json: any): OrderBracketsOut {
+    return OrderBracketsOutToJSONTyped(json, false);
+}
+
+export function OrderBracketsOutToJSONTyped(value?: OrderBracketsOut | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'brackets': value['brackets'] == null ? undefined : ((value['brackets'] as Array<any>).map(BracketOutToJSON)),

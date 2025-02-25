@@ -108,10 +108,15 @@ export function ReportInFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function ReportInToJSON(value?: ReportIn | null): any {
+export function ReportInToJSON(json: any): ReportIn {
+    return ReportInToJSONTyped(json, false);
+}
+
+export function ReportInToJSONTyped(value?: ReportIn | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'categories': value['categories'],

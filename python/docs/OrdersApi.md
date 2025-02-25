@@ -1,6 +1,6 @@
 # autoenhance.OrdersApi
 
-All URIs are relative to *https://api.autoenhance.ai*
+All URIs are relative to *https://dev.api.autoenhance.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,10 +28,10 @@ from autoenhance.models.order_in import OrderIn
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -108,10 +108,10 @@ import autoenhance
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -187,10 +187,10 @@ from autoenhance.models.orders_out import OrdersOut
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -209,7 +209,7 @@ with autoenhance.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = autoenhance.OrdersApi(api_client)
     offset = 'offset_example' # str | The offset token used to indicate which page of results to use. (optional)
-    per_page = 20 # int | The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large. (optional) (default to 20)
+    per_page = 5 # int | The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large. (optional) (default to 5)
 
     try:
         # List Orders
@@ -228,7 +228,7 @@ with autoenhance.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offset** | **str**| The offset token used to indicate which page of results to use. | [optional] 
- **per_page** | **int**| The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large. | [optional] [default to 20]
+ **per_page** | **int**| The amount of items to be loaded per page of results. The final response may have a smaller number than requested if too large. | [optional] [default to 5]
 
 ### Return type
 
@@ -270,10 +270,10 @@ from autoenhance.models.order_hdr_merge import OrderHDRMerge
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -353,10 +353,10 @@ from autoenhance.models.order_out import OrderOut
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 
@@ -424,10 +424,10 @@ from autoenhance.models.order_out import OrderOut
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -507,10 +507,10 @@ from autoenhance.models.order_brackets_out import OrderBracketsOut
 from autoenhance.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.autoenhance.ai
+# Defining the host is optional and defaults to https://dev.api.autoenhance.ai
 # See configuration.py for a list of all supported configuration parameters.
 configuration = autoenhance.Configuration(
-    host = "https://api.autoenhance.ai"
+    host = "https://dev.api.autoenhance.ai"
 )
 
 

@@ -24,31 +24,7 @@ export interface OrderHDRMerge {
      * @type {string}
      * @memberof OrderHDRMerge
      */
-    aiVersion?: string;
-    /**
-     * The amount of brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    brightnessBoost?: OrderHDRMergeBrightnessBoostEnum | null;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    brightnessBoostExternal?: OrderHDRMergeBrightnessBoostExternalEnum | null;
-    /**
-     * The amount of external brightness boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    brightnessBoostInternal?: OrderHDRMergeBrightnessBoostInternalEnum | null;
-    /**
-     * The amount of clarity to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    clarityLevel?: OrderHDRMergeClarityLevelEnum | null;
+    aiVersion?: OrderHDRMergeAiVersionEnum;
     /**
      * The type of clouds in the new sky to replace the original sky with. Options include: CLEAR, LOW_CLOUD, HIGH_CLOUD
      * @type {string}
@@ -56,37 +32,13 @@ export interface OrderHDRMerge {
      */
     cloudType?: OrderHDRMergeCloudTypeEnum | null;
     /**
-     * The amount of contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    contrastBoost?: OrderHDRMergeContrastBoostEnum | null;
-    /**
-     * The amount of external contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    contrastBoostExternal?: OrderHDRMergeContrastBoostExternalEnum | null;
-    /**
-     * The amount of internal contrast boost to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    contrastBoostInternal?: OrderHDRMergeContrastBoostInternalEnum | null;
-    /**
-     * The amount of denoising to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    denoiseLevel?: OrderHDRMergeDenoiseLevelEnum | null;
-    /**
      * Whether to enhance the image.
      * @type {boolean}
      * @memberof OrderHDRMerge
      */
     enhance?: boolean;
     /**
-     * The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM, NEUTRAL, or AUTHENTIC.
+     * The type of enhancement to apply to the image. PROPERTY or PROPERTY_USA is used with AI version < 4.0, for >= 4.0 use WARM or NEUTRAL..
      * @type {string}
      * @memberof OrderHDRMerge
      */
@@ -110,23 +62,17 @@ export interface OrderHDRMerge {
      */
     privacy?: boolean | null;
     /**
-     * The amount of saturation to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    saturationLevel?: OrderHDRMergeSaturationLevelEnum | null;
-    /**
-     * The amount of sharpening to apply to the image. Options include: NONE, LOW, MEDIUM, HIGH
-     * @type {string}
-     * @memberof OrderHDRMerge
-     */
-    sharpenLevel?: OrderHDRMergeSharpenLevelEnum | null;
-    /**
      * Enable the replacement of the original sky for a summer sky.
      * @type {boolean}
      * @memberof OrderHDRMerge
      */
     skyReplacement?: boolean;
+    /**
+     * Whether to upscale the image.
+     * @type {boolean}
+     * @memberof OrderHDRMerge
+     */
+    upscale?: boolean;
     /**
      * Correct any vertical distortion in the image so that it appears straight.
      * @type {boolean}
@@ -145,50 +91,25 @@ export interface OrderHDRMerge {
 /**
  * @export
  */
-export const OrderHDRMergeBrightnessBoostEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
+export const OrderHDRMergeAiVersionEnum = {
+    Dev: 'dev',
+    _4X: '4.x',
+    _47: '4.7',
+    _45: '4.5',
+    _44: '4.4',
+    _43: '4.3',
+    _42: '4.2',
+    _41: '4.1',
+    _40: '4.0',
+    _3X: '3.x',
+    _35: '3.5',
+    _34: '3.4',
+    _33: '3.3',
+    _32: '3.2',
+    _31: '3.1',
+    _30: '3.0'
 } as const;
-export type OrderHDRMergeBrightnessBoostEnum = typeof OrderHDRMergeBrightnessBoostEnum[keyof typeof OrderHDRMergeBrightnessBoostEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeBrightnessBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeBrightnessBoostExternalEnum = typeof OrderHDRMergeBrightnessBoostExternalEnum[keyof typeof OrderHDRMergeBrightnessBoostExternalEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeBrightnessBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeBrightnessBoostInternalEnum = typeof OrderHDRMergeBrightnessBoostInternalEnum[keyof typeof OrderHDRMergeBrightnessBoostInternalEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeClarityLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeClarityLevelEnum = typeof OrderHDRMergeClarityLevelEnum[keyof typeof OrderHDRMergeClarityLevelEnum];
+export type OrderHDRMergeAiVersionEnum = typeof OrderHDRMergeAiVersionEnum[keyof typeof OrderHDRMergeAiVersionEnum];
 
 /**
  * @export
@@ -196,58 +117,9 @@ export type OrderHDRMergeClarityLevelEnum = typeof OrderHDRMergeClarityLevelEnum
 export const OrderHDRMergeCloudTypeEnum = {
     Clear: 'CLEAR',
     LowCloud: 'LOW_CLOUD',
-    HighCloud: 'HIGH_CLOUD',
-    Null: 'null'
+    HighCloud: 'HIGH_CLOUD'
 } as const;
 export type OrderHDRMergeCloudTypeEnum = typeof OrderHDRMergeCloudTypeEnum[keyof typeof OrderHDRMergeCloudTypeEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeContrastBoostEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeContrastBoostEnum = typeof OrderHDRMergeContrastBoostEnum[keyof typeof OrderHDRMergeContrastBoostEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeContrastBoostExternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeContrastBoostExternalEnum = typeof OrderHDRMergeContrastBoostExternalEnum[keyof typeof OrderHDRMergeContrastBoostExternalEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeContrastBoostInternalEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeContrastBoostInternalEnum = typeof OrderHDRMergeContrastBoostInternalEnum[keyof typeof OrderHDRMergeContrastBoostInternalEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeDenoiseLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeDenoiseLevelEnum = typeof OrderHDRMergeDenoiseLevelEnum[keyof typeof OrderHDRMergeDenoiseLevelEnum];
 
 /**
  * @export
@@ -256,34 +128,9 @@ export const OrderHDRMergeEnhanceTypeEnum = {
     Property: 'property',
     PropertyUsa: 'property_usa',
     Warm: 'warm',
-    Neutral: 'neutral',
-    Authentic: 'authentic'
+    Neutral: 'neutral'
 } as const;
 export type OrderHDRMergeEnhanceTypeEnum = typeof OrderHDRMergeEnhanceTypeEnum[keyof typeof OrderHDRMergeEnhanceTypeEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeSaturationLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeSaturationLevelEnum = typeof OrderHDRMergeSaturationLevelEnum[keyof typeof OrderHDRMergeSaturationLevelEnum];
-
-/**
- * @export
- */
-export const OrderHDRMergeSharpenLevelEnum = {
-    None: 'NONE',
-    Low: 'LOW',
-    Medium: 'MEDIUM',
-    High: 'HIGH',
-    Null: 'null'
-} as const;
-export type OrderHDRMergeSharpenLevelEnum = typeof OrderHDRMergeSharpenLevelEnum[keyof typeof OrderHDRMergeSharpenLevelEnum];
 
 
 /**
@@ -304,52 +151,39 @@ export function OrderHDRMergeFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'aiVersion': json['ai_version'] == null ? undefined : json['ai_version'],
-        'brightnessBoost': json['brightness_boost'] == null ? undefined : json['brightness_boost'],
-        'brightnessBoostExternal': json['brightness_boost_external'] == null ? undefined : json['brightness_boost_external'],
-        'brightnessBoostInternal': json['brightness_boost_internal'] == null ? undefined : json['brightness_boost_internal'],
-        'clarityLevel': json['clarity_level'] == null ? undefined : json['clarity_level'],
         'cloudType': json['cloud_type'] == null ? undefined : json['cloud_type'],
-        'contrastBoost': json['contrast_boost'] == null ? undefined : json['contrast_boost'],
-        'contrastBoostExternal': json['contrast_boost_external'] == null ? undefined : json['contrast_boost_external'],
-        'contrastBoostInternal': json['contrast_boost_internal'] == null ? undefined : json['contrast_boost_internal'],
-        'denoiseLevel': json['denoise_level'] == null ? undefined : json['denoise_level'],
         'enhance': json['enhance'] == null ? undefined : json['enhance'],
         'enhanceType': json['enhance_type'] == null ? undefined : json['enhance_type'],
         'lensCorrection': json['lens_correction'] == null ? undefined : json['lens_correction'],
         'numberOfBracketsPerImage': json['number_of_brackets_per_image'] == null ? undefined : json['number_of_brackets_per_image'],
         'privacy': json['privacy'] == null ? undefined : json['privacy'],
-        'saturationLevel': json['saturation_level'] == null ? undefined : json['saturation_level'],
-        'sharpenLevel': json['sharpen_level'] == null ? undefined : json['sharpen_level'],
         'skyReplacement': json['sky_replacement'] == null ? undefined : json['sky_replacement'],
+        'upscale': json['upscale'] == null ? undefined : json['upscale'],
         'verticalCorrection': json['vertical_correction'] == null ? undefined : json['vertical_correction'],
         'windowPull': json['window_pull'] == null ? undefined : json['window_pull'],
     };
 }
 
-export function OrderHDRMergeToJSON(value?: OrderHDRMerge | null): any {
+export function OrderHDRMergeToJSON(json: any): OrderHDRMerge {
+    return OrderHDRMergeToJSONTyped(json, false);
+}
+
+export function OrderHDRMergeToJSONTyped(value?: OrderHDRMerge | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'ai_version': value['aiVersion'],
-        'brightness_boost': value['brightnessBoost'],
-        'brightness_boost_external': value['brightnessBoostExternal'],
-        'brightness_boost_internal': value['brightnessBoostInternal'],
-        'clarity_level': value['clarityLevel'],
         'cloud_type': value['cloudType'],
-        'contrast_boost': value['contrastBoost'],
-        'contrast_boost_external': value['contrastBoostExternal'],
-        'contrast_boost_internal': value['contrastBoostInternal'],
-        'denoise_level': value['denoiseLevel'],
         'enhance': value['enhance'],
         'enhance_type': value['enhanceType'],
         'lens_correction': value['lensCorrection'],
         'number_of_brackets_per_image': value['numberOfBracketsPerImage'],
         'privacy': value['privacy'],
-        'saturation_level': value['saturationLevel'],
-        'sharpen_level': value['sharpenLevel'],
         'sky_replacement': value['skyReplacement'],
+        'upscale': value['upscale'],
         'vertical_correction': value['verticalCorrection'],
         'window_pull': value['windowPull'],
     };

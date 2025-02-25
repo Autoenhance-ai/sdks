@@ -55,10 +55,15 @@ export function PaginationFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function PaginationToJSON(value?: Pagination | null): any {
+export function PaginationToJSON(json: any): Pagination {
+    return PaginationToJSONTyped(json, false);
+}
+
+export function PaginationToJSONTyped(value?: Pagination | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'next_offset': value['nextOffset'],

@@ -26,8 +26,8 @@ from autoenhance.models.validation_error import ValidationError
 from autoenhance.models.validation_error_detail import ValidationErrorDetail
 from autoenhance.models.validation_error_detail_location import ValidationErrorDetailLocation
 
-__version__ = "1.0.0"
-__api_version__ = "2024-10-01"
+__version__ = "1.0.4"
+__api_version__ = "2025-01-01"
 
 class Autoenhance(ApiClient, ImagesApi, OrdersApi):
 
@@ -49,13 +49,9 @@ class Autoenhance(ApiClient, ImagesApi, OrdersApi):
     def delete_image(self, **kwargs):
         return super().delete_image(id=kwargs.get('id', None)) 
     def download_enhanced_image(self, **kwargs):
-        return super().download_enhanced_image(id=kwargs.get('id', None), size=kwargs.get('size', None)) 
+        return super().download_enhanced_image(id=kwargs.get('id', None), quality=kwargs.get('quality', None), format=kwargs.get('format', None), preview=kwargs.get('preview', None), watermark=kwargs.get('watermark', None), max_width=kwargs.get('max_width', None), scale=kwargs.get('scale', None)) 
     def download_original_image(self, **kwargs):
-        return super().download_original_image(id=kwargs.get('id', None), size=kwargs.get('size', None)) 
-    def download_preview_image(self, **kwargs):
-        return super().download_preview_image(id=kwargs.get('id', None)) 
-    def download_watermark_image(self, **kwargs):
-        return super().download_watermark_image(id=kwargs.get('id', None)) 
+        return super().download_original_image(id=kwargs.get('id', None), quality=kwargs.get('quality', None), format=kwargs.get('format', None), preview=kwargs.get('preview', None), watermark=kwargs.get('watermark', None), max_width=kwargs.get('max_width', None), scale=kwargs.get('scale', None)) 
     def report_image(self, **kwargs):
         kwargs['report_in'] = ReportIn.from_dict(kwargs)
         return super().report_image(id=kwargs.get('id', None), report_in=kwargs.get('report_in', None)) 
